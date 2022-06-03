@@ -1,0 +1,70 @@
+<%- include("./partials/headerfirst") %>
+<title>Panel</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.25.0/moment.min.js"></script>
+<%- include("./partials/headersecond") %>
+<script src="/js/adminPanel.js"></script>
+<div class="container-fluid productTab vf">
+    <%if(error && error.length > 0){%>
+        <div class="alert alert-danger" id="errorBox" role="alert">
+            <p id="err"><%= error %></p>
+        </div>
+    <%}%>
+    <%if(success && success.length > 0){%>
+        <div class="alert alert-success" id="successBox" role="alert">
+            <p id="suc"><%= success %></p>
+        </div>
+    <%}%>
+    <select class="custom-select adminup custom-select-lg mb-3">
+        <option selected>Select admin functions</option>
+        <option value="checkKeyPayPal">Check keys by Email</option>
+        <option value="rechargeEmail">Recharge by email and country</option>
+        <option value="addBPayPal">Add to PayPal BlackList</option>
+        <option value="removeBPayPal">Remove from PayPal BlackList</option>
+        <option value="resetPassword">Reset Password</option>
+      </select>
+      <form action="" id="checkKeyPayPal" class="adminOPT">
+      <div class="input-group mb-3" >
+        <input type="text" class="form-control" placeholder="PayPal Email" aria-describedby="buttoncheckKeyPayPal">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="submit" id="buttoncheckKeyPayPal">Check</button>
+        </div>
+      </div>
+    </form>
+      <form action="/paypalBlack" method="POST"  id="addBPayPal" class="adminOPT">
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" name="email" placeholder="PayPal Email" aria-describedby="buttonaddBPayPal">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="submit" id="buttonaddBPayPal">Add</button>
+        </div>
+      </div>
+    </form>
+    <form action="/rechargeEmail" method="POST"  id="rechargeEmail" class="adminOPT">
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" name="email" placeholder="User Email">
+        <input type="text" class="form-control" name="country" placeholder="User Country(INR/USD)">
+        <input type="number" class="form-control" name="amount" placeholder="Amount">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="submit" id="buttonRecharge">Recharge</button>
+        </div>
+      </div>
+    </form>
+    <form action="/paypalBlack?_method=DELETE" method="POST"  id="removeBPayPal" class="adminOPT">
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" name="email" placeholder="PayPal Email" aria-describedby="buttonremoveBPayPal">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="submit" id="buttonremoveBPayPal">Remove</button>
+        </div>
+      </div>
+    </form>
+    <form action="/reset" method="POST"  id="resetPassword" class="adminOPT">
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" name="email" placeholder="User Email" aria-describedby="buttonremoveBEmail">
+        <input type="text" class="form-control" name="password" placeholder="User Password">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="submit" id="buttonremoveBEmail">Change password</button>
+        </div>
+      </div>
+    </form>
+    <div class="resultsOf" id="searchpaypalResult"></div>
+</div>
+<%- include("./partials/footer") %>

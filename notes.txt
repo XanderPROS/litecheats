@@ -1,0 +1,3 @@
+things to change when shift to a server
+1.Change mongodb url
+2.process env

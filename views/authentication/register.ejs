@@ -1,0 +1,167 @@
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Litecheats Registration</title>
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/cb06eac06f.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/stylesheets/auth.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="/js/register.js"></script>
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div id="section" >
+            
+            
+            <form action="/register" id="regForm" method="POST" autocomplete="off" class="needs-validation" novalidate>
+                <a href="/"><img src="/images/litecheats.png" alt=""></a>
+                <%if(error && error.length > 0){%>
+                    <div class="alert alert-danger" id="errorBox" role="alert">
+                        <h6>There was a problem</h6>
+                        <i id="errIco" class="fas fa-exclamation-triangle"></i> 
+                        <p id="err"><%= error %></p>
+                    </div>
+                <%}%>
+                <%if(success && success.length > 0){%>
+                    <div class="alert alert-success" id="successBox" role="alert">
+                        <h6 class="headAlert">Done</h6>
+                        <i id="sucIco" class="fas fa-check-circle"></i>
+                        <p id="suc"><%= success %></p>
+                    </div>
+                <%}%>
+                <% if((!error || error.length<=0) && (!success || success.length<=0)){%>
+                    <hr id="hrbelowIm">
+                <% } %>
+                <h4 id="heading">Create account</h4>
+                <div class="form-group" autocomplete="off">
+                    <label for="inputEmail">Email</label>
+                    <input type="email" class="form-control form-control-sm" id="inputEmail" name="email" required autofocus/>
+                </div>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" aria-describedby="usernameHelp"  class="form-control form-control-sm" name="username" id="username" required>
+                    <small id="usernameHelp" class="form-text text-muted"><span id="ee">Only letters and numbers</span></small>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" aria-describedby="passHelp" class="form-control form-control-sm" name="password" id="password" required >
+                        <small id="passHelp" class="form-text text-muted"><span id="ee">Password must be at least 6 characters(only letters and numbers)</span></small>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" class="form-control form-control-sm" name="confirmationPassword" id="confirmPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="country">Select your country</label>
+                    <select class="form-control form-control-sm" name="country" id="country" required>
+                        <option value="INR" >India</option>
+                        <option value="USD" >All other countries</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                      <label class="form-check-label text-muted" for="invalidCheck" style="font-size: 0.8rem;font-weight: 400;">
+                        I have read and agree to the <a href="#" data-toggle="modal" data-target="#agreementModal">Terms and Conditions and Privacy Policy</a>
+                      </label>
+                      <div class="invalid-feedback" style="font-size: 0.8rem;font-weight: 400;">
+                        You must agree before creating an account. 
+                      </div>
+                    </div>
+                  </div>
+                <button type="submit" class="btn btn-warning"><span id="buttonText">Create your Litecheats account<span></button>
+                <div>
+                <hr id="hrbelowFo">
+                <p id="signin">Already have an account? <a href="/">Sign-In <span id="signIco"><i class="fas fa-caret-right"></i></span></a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="modal fade" id="agreementModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-body">
+              <div class="Termsandconditions" >
+                <div class="row">
+                  <div class="col-9">
+                    <h1 class="agreetitles">TERMS AND CONDITIONS</h1>
+                  </div>
+                  <div class="col-3">
+                    <button type="button" class="close d-flex justify-content-end" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+                  </div>
+                </div>
+                  
+                  
+                  <div>
+                      <p class="lead" style="
+                      font-size: 0.87rem;
+                      line-height: 1.4em;
+                      color: #555;
+                      border-bottom: 1px solid #ddd;
+                      margin-bottom: 14px;
+                      padding-bottom: 14px;">
+                        <span><strong>PLEASE READ THIS CAREFULLY</strong></span>
+                      </p>
+                      <p class="agreepara">
+                        Welcome to Litecheats.com. Litecheats.com provide website features and other products and services to you when you visit or shop at Litecheats.com, use Litecheats products or services, or use software provided by Litecheats in connection with any of the foregoing (collectively, "Litecheats Services"). Litecheats provides the Litecheats Services subject to the following conditions.
+                      </p>
+                      <h1 class="agreetitles">YOUR ACCOUNT</h1>
+                      <p class="agreepara">
+                         You are responsible for maintaining the confidentiality of your account and password and for restricting access to your account, and you agree to accept responsibility for all activities that occur under your account or password.
+                      </p>
+                      <h1 class="agreetitles">REFUNDS</h1>
+                      <p class="agreepara">
+                         A refund is issued only when the purchased item is returned in unused condition and after it gets sold to another customer.
+                      </p>
+                      <h1 class="agreetitles">PRODUCT DESCRIPTIONS</h1>
+                      <p class="agreepara">
+                        Litecheats does not warrant that product descriptions or other content of any Litecheats Service is accurate, complete, reliable, current, or error-free. If a product offered by Litecheats itself is not as described, your sole remedy is to return it in unused condition.
+                      </p>
+                      <h1 class="agreetitles">PRICING</h1>
+                      <p class="agreepara">
+                        Price means the suggested retail price of a product as provided by the owner or the developer.
+                      </p>
+                      <h1 class="agreetitles">APPS PERMISSIONS</h1>
+                      <p class="agreepara">
+                        When you use apps created by Litecheats, you may grant certain permissions to us for your device. 
+                      </p>
+                      <h1 class="agreetitles">DISCLAIMER OF WARRANTIES AND LIMITATION OF LIABILITY</h1>
+                      <p class="agreepara">
+                        THE LITECHEATS SERVICES AND ALL INFORMATION, CONTENT, MATERIALS, PRODUCTS (INCLUDING SOFTWARE) AND OTHER SERVICES INCLUDED ON OR OTHERWISE MADE AVAILABLE TO YOU THROUGH THE LITECHEATS SERVICES ARE PROVIDED BY LITECHEATS ON AN "AS IS" AND "AS AVAILABLE" BASIS, UNLESS OTHERWISE SPECIFIED IN WRITING. LITECHEATS MAKES NO REPRESENTATIONS OR WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED, AS TO THE OPERATION OF THE LITECHEATS SERVICES, OR THE INFORMATION, CONTENT, MATERIALS, PRODUCTS (INCLUDING SOFTWARE) OR OTHER SERVICES INCLUDED ON OR OTHERWISE MADE AVAILABLE TO YOU THROUGH THE LITECHEATS SERVICES, UNLESS OTHERWISE SPECIFIED IN WRITING. YOU EXPRESSLY AGREE THAT YOUR USE OF THE LITECHEATS SERVICES IS AT YOUR SOLE RISK.
+                      </p>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>

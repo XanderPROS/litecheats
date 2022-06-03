@@ -1,0 +1,116 @@
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: rgb(255, 255, 255);
+}
+#paymentForm{
+    text-align: center;
+    margin-top: 10vh;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    border: rgba(255, 255, 255, 0) 2px solid;
+    border-radius: 2rem;
+    -webkit-box-shadow: -5px 3px 32px 0px rgba(115,111,115,1);
+    -moz-box-shadow: -5px 3px 32px 0px rgba(115,111,115,1);
+    box-shadow: -5px 3px 32px 0px rgba(115,111,115,1);
+    padding: 1rem;
+    background: #333333;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #dd1818, #333333);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #dd1818, #333333); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+    
+  
+}
+#waitingIcon{
+    height: 8rem;
+    width: 8rem;
+    border:1.5rem solid rgba(255, 255, 255, 0);
+    border-top-color: rgb(255, 0, 0);
+    border-bottom-color: rgb(255, 255, 255);
+    border-radius: 50%;
+    margin:auto;
+    animation: spin 3s linear infinite;
+}
+@keyframes spin{
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+#paymentWait{
+    margin-top: 0.5rem;
+}
+#note{
+    border: 2px dashed rgb(13, 151, 243);
+    width: fit-content;
+    margin:0 auto;
+    padding: 1rem;
+    border-radius: 3px;
+    font-size: small;
+    margin-top: 1rem;
+}
+#note div code{
+    font-weight: 600;
+    font-size: small;
+    color: rgb(20, 207, 231);
+}
+#paypalEmail{
+    width: 15rem;
+    margin:1rem auto 0 auto;
+}
+#payButton{
+    margin-top:0.5rem;
+}
+.fa-paypal{
+    color: #0079C1;
+}
+.fa-exclamation-triangle{
+    color: yellow;
+}
+#refund{
+    margin-top: 2px;
+}
+#refund div{
+    font-size: 0.8em;
+}
+.invoice-box {
+    max-width: 800px;
+    margin: auto;
+    padding: 30px;
+    line-height: 24px;
+    color: rgb(255, 255, 255);
+}
+.invoice-box table {
+    width: 100%;
+    line-height: inherit;
+    text-align: left;
+}
+.invoice-box table td {
+    padding: 5px;
+    vertical-align: top;
+}
+.invoice-box table tr td:nth-child(2) {
+    text-align: right;
+}
+.invoice-box table tr.heading td {
+    background: rgba(238, 238, 238, 0);
+    border-bottom: 1px solid #ddd;
+    font-weight: bold;
+}
+.invoice-box table tr.item td{
+    border-bottom: 1px solid #eee;
+}
+
+.invoice-box table tr.item.last td {
+    border-bottom: none;
+}
+
+.invoice-box table tr.total td:nth-child(2) {
+    border-top: 2px solid #eee;
+    font-weight: bold;
+}

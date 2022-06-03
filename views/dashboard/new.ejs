@@ -1,0 +1,92 @@
+<%- include("./partials/header") %>
+    <div class="container-fluid productTab vf">
+        <form action="/dashboard" method="POST">
+            <div class="form-group">
+                <label for="productname">Product Name</label>
+                <input type="text" class="form-control" id="productname" name="name">
+            </div>
+            <div class="form-group">
+                <label for="gamename">Game Name</label>
+                <input type="text" class="form-control" id="gamename" name="game">
+            </div>
+            <div class="form-group">
+                <label for="typeOfProduct">Type of product</label>
+                <input type="text" class="form-control" id="typeOfProduct" name="typeOfProduct">
+            </div>
+            <div class="form-group">
+                <label for="device">Device</label>
+                <input type="text" class="form-control" id="device" name="device">
+            </div>
+            <div class="form-group">
+                <label for="image">Image:</label>
+                <input class="form-control" type="text" id="image" name="image">
+            </div>
+            <div class="form-group">
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="customRadioInline1" name="customRadioInline1" value="safe" class="custom-control-input" checked>
+                    <label class="custom-control-label" for="customRadioInline1">Safe</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="customRadioInline2" name="customRadioInline1" value="danger" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadioInline2">Wait for update</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="tutorial">Tutorial</label>
+                <textarea class="form-control" id="tutorial" name="tutorial" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="secret">Delivery On Purchase</label>
+                <textarea class="form-control" id="secret" name="secret" rows="3"></textarea>
+            </div>
+            <div class="downloadings">
+                <h1>Downloads</h1>
+                <div class="form-inline">
+                    <div class="form-group col-4">
+                        <label for="downloadname">Name</label>
+                        <input type="text" class="form-control" id="downloadname" name="downloads[download][name]">
+                    </div>
+                    <div class="form-group col-4">
+                        <label for="downloadversion">Version</label>
+                        <input type="text" class="form-control" id="downloadversion" name="downloads[download][version]">
+                    </div>
+                    <div class="form-group col-4">
+                        <label for="downloadfile">File</label>
+                        <input type="text" class="form-control" id="downloadfile" name="downloads[download][file]">
+                    </div>
+                    <div class="form-group col-4">
+                        <label for="changelog">Changelog</label>
+                        <textarea class="form-control" name="downloads[download][changelog]" id="changelog" rows="10"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="adddiv"><button class="add">Add</button></div>
+            <div class="keying">
+                <h1>Keys</h1>
+                <div class="form-inline">
+                    <div class="form-group col-6">
+                        <label for="keytype">KeyType</label>
+                        <input type="text" class="form-control" id="keytype" name="keys[key][keyType]">
+                    </div>
+                    <div class="form-group col-6">
+                        <label for="keyPrice">Key Price</label>
+                        <input type="text" class="form-control" id="keyPrice" name="keys[key][keyPrice]">
+                    </div>
+                    <div class="form-group col-6">
+                        <label for="agentPrice">Agent Price</label>
+                        <input type="text" class="form-control" id="agentPrice" name="keys[key][agentPrice]">
+                    </div>
+                    <div class="form-group col-12">
+                        <label for="keyList">Key List</label>
+                        <textarea class="form-control" id="keyList" name="keys[key][keyList]" rows="3" cols="50"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="adddiv"><button class="addi">Add</button></div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+<script src="/js/xyz.js"></script>
+<%- include("./partials/footer") %>

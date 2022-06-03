@@ -1,0 +1,113 @@
+<%- include("./partials/header") %>
+    <div class="container-fluid productTab vf">
+        <form action="/dashboard/<%=product._id%>?_method=PUT" method="POST">
+            <div class="form-group">
+                <label for="productname">Product Name</label>
+                <input type="text" class="form-control" value="<%=product.name%>" id="productname" name="name">
+            </div>
+            <div class="form-group">
+                <label for="gamename">Game Name</label>
+                <input type="text" class="form-control" value="<%=product.game%>" id="gamename" name="game">
+            </div>
+            <div class="form-group">
+                <label for="typeOfProduct">Type of product</label>
+                <input type="text" class="form-control" value="<%=product.typeOfProduct%>" id="typeOfProduct" name="typeOfProduct">
+            </div>
+            <div class="form-group">
+                <label for="device">Device</label>
+                <input type="text" class="form-control" value="<%=product.device%>" id="device" name="device">
+            </div>
+            <div class="form-group">
+                <label for="image">Image:</label>
+                <input class="form-control" type="text" value="<%=product.image%>" id="image" name="image">
+            </div>
+            <div class="form-group">
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="customRadioInline1" name="customRadioInline1" value="safe" class="custom-control-input"
+                    <% if(product.status==="green"){%>
+                        checked
+                    <%}%>
+                    >
+                    <label class="custom-control-label" for="customRadioInline1">Safe</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="customRadioInline2" name="customRadioInline1" value="danger" class="custom-control-input"
+                    <% if(product.status==="red"){%>
+                        checked
+                    <%}%>
+                    >
+                    <label class="custom-control-label" for="customRadioInline2">Wait for update</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="tutorial">Tutorial</label>
+                <textarea class="form-control" id="tutorial" name="tutorial" rows="3"><%=product.tutorial%></textarea>
+            </div>
+            <div class="form-group">
+                <label for="secret">Delivery on Purchase</label>
+                <textarea class="form-control" id="secret" name="secret" rows="3"><%=product.secret%></textarea>
+            </div>
+                <h1>Downloads</h1>
+                <div class="downloadings">
+                <%var i=9000;
+            product.downloads.forEach(function(download){%>
+                <div class="form-inline">
+                    <div class="form-group col-4">
+                        <label for="downloadname<%=i%>">Name</label>
+                        <input type="text" class="form-control" value="<%=download.name%>" id="downloadname<%=i%>" name="downloads[download<%=i%>][name]">
+                    </div>
+                    <div class="form-group col-4">
+                        <label for="downloadversion<%=i%>">Version</label>
+                        <input type="text" class="form-control" value="<%=download.version%>" id="downloadversion<%=i%>" name="downloads[download<%=i%>][version]">
+                    </div>
+                    <div class="form-group col-4">
+                        <label for="downloadfile<%=i%>">File</label>
+                        <input type="text" class="form-control" id="downloadfile<%=i%>" value="<%=download.link%>" name="downloads[download<%=i%>][file]">
+                    </div>
+                    <div class="form-group col-4">
+                        <label for="downloadtime<%=i%>">Time</label>
+                        <input type="text" class="form-control" id="downloadtime<%=i%>" value="<%=download.updateTime%>" name="downloads[download<%=i%>][time]">
+                    </div>
+                    <div class="form-group col-4">
+                        <label for="changelog<%=i%>">Changelog</label>
+                        <textarea class="form-control" name="downloads[download<%=i%>][changelog]" id="changelog<%=i%>" rows="10"><%=download.changelog%></textarea>
+                    </div>
+                </div>
+                <% i=i+1;}) %>
+                </div>
+            
+            
+            <div class="adddiv"><button class="add">Add</button></div>
+
+            <div class="keying">
+                <h1>Keys</h1>
+                <%var i=18000;
+                    product.keys.forEach(function(key){%>
+                <div class="form-inline">
+                    <div class="form-group col-6">
+                        <label for="keytype<%=i%>">KeyType</label>
+                        <input type="text" class="form-control" id="keytype<%=i%>" value="<%=key.keyType%>" name="keys[key<%=i%>][keyType]">
+                    </div>
+                    <div class="form-group col-6">
+                        <label for="keyPrice<%=i%>">Key Price</label>
+                        <input type="text" class="form-control" id="keyPrice<%=i%>" value="<%=key.keyPrice%>" name="keys[key<%=i%>][keyPrice]">
+                    </div>
+                    <div class="form-group col-6">
+                        <label for="agentPrice<%=i%>">Agent Price</label>
+                        <input type="text" class="form-control" id="agentPrice<%=i%>" value="<%=key.agentPrice%>" name="keys[key<%=i%>][agentPrice]">
+                    </div>
+                    <div class="form-group col-12">
+                        <label for="keyList<%=i%>">Key List</label>
+                        <textarea class="form-control" id="keyList<%=i%>" name="keys[key<%=i%>][keyList]" rows="3" cols="50"><%=key.keyList.join("\r\n")%></textarea>
+                    </div>
+                </div>
+                <% i=i+1;}) %>
+            </div>
+            <div class="adddiv"><button class="addi">Add</button></div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+<script src="/js/xyy.js"></script>
+<%- include("./partials/footer") %>

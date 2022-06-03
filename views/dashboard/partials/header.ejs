@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="https://kit.fontawesome.com/cb06eac06f.js" crossorigin="anonymous"></script>
+        
+        <link rel="stylesheet" href="/stylesheets/navbar.css">
+        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+        <title>My dashboard</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.25.0/moment.min.js"></script>
+        <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="/js/dashboard.js"></script>
+        <script src="https://cdn.bootcss.com/flv.js/1.5.0/flv.min.js"></script>
+    </head>
+    <body>
+
+<!-- Modal -->
+<div class="modal fade" id="insufficientBalance" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body row">
+      <div class="col-12 d-flex justify-content-center warn">
+      <h4 class="lll">Warning!!!</h4>
+      </div>
+      <div class="col-12 d-flex justify-content-center">
+      <h5 class="llb">Insufficient balance.Please recharge your litecheats balance.</h5>
+      </div>
+      <div class="col-12 d-flex justify-content-center">
+        <button type="button" class="btn btn-primary d-none d-sm-block alertClose" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary btn-sm d-xs-block d-sm-none alertClose" data-dismiss="modal">Close</button>
+      </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="quantityStock" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body row">
+      <div class="col-12 d-flex justify-content-center warn">
+      <h4 class="lll">Warning!!!</h4>
+      </div>
+      <div class="col-12 d-flex justify-content-center">
+      <h5 class="llb">Quantity typed is more than stock</h5>
+      </div>
+      <div class="col-12 d-flex justify-content-center">
+        <button type="button" class="btn btn-primary d-none d-sm-block alertClose" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary btn-sm d-xs-block d-sm-none alertClose" data-dismiss="modal">Close</button>
+      </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+        
+        <div class="w3-sidebar w3-bar-block w3-collapse w3-card" style="width:275px;right:0;" id="mySidebar">
+            <div id="sidebarMenu">
+                <div class="row bal">
+                <div class="col-md-12 pr-0">
+                    <div class="col-md-12 ball d-flex justify-content-center">
+                        <div class="balance row">
+                            <div class="col-12 d-flex justify-content-center">
+                                <h6 id="balanceHead">Your Litecheats Balance:</h6>
+                            </div>
+                            <div class="col-12 d-flex justify-content-center">
+                             <h6 id="balanceNum">
+                            <% if(currentUser.country==="INR"){ %>
+                                INR
+                            <% }else{ %>
+                                $
+                            <% } %>
+                            <span id="balanceINR"><%=currentUser.lcbalance.match(/^-?\d+(?:\.\d{0,2})?/)[0]%></span></h6>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 formRech d-flex justify-content-center">
+                        <form class="form" action="/recharge_paypal" method="POST">
+                            <div class="form-group row mb-2">
+                                <div class="col-12 d-flex justify-content-center">
+                                    <label id="rechargeText" class="my-auto mx-auto" for="rechargeAmount">Recharge: </label>
+                                </div>
+                                <div class="col-12 d-flex justify-content-center">
+                                    <% if(currentUser.country==="INR"){ %>
+                                        <input type="number" class="form-control form-control-sm" min=1 step="1" id="rechargeAmount" name="rechargeAmount" placeholder="Type amount in INR" Required>
+                                    <% }else{ %>
+                                        <input type="number" class="form-control form-control-sm" min=1 step="1" id="rechargeAmount" name="rechargeAmount" placeholder="Type amount in $" Required>
+                                    <% } %>
+                                </div>
+                            </div>
+                            <div class="row">
+                               <% if(currentUser.country!=="INR"){ %>
+                                   <div class="col d-flex justify-content-end pl-0">
+                                        <button type="submit" class="btn btn-sm btn-warning"><img src="/images/paypal.png" height="20" width="80" alt="PayPal Credit"></button>
+                                    </div>
+                                <%}%> 
+                                <% if(currentUser.country==="INR"){ %>
+                                        <div class="col d-flex justify-content-end pl-0">
+                                            <button type="submit" class="btn btn-warning btn-sm" formaction="/recharge_paytm"><img src="/images/paytm.png" height="23" width="80" alt=""></button>
+                                        </div>
+                                <% } %>
+                                <div class="col d-flex justify-content-center pl-0">
+                                    <button type="submit" class="btn btn-warning btn-sm" formaction="/create_charge"><img src="/images/bitcoin.png" height="23" width="80" alt=""></button>
+                                </div>
+                                <% if(currentUser.country==="INR"){ %>
+                                    <div class="col-12 d-flex justify-content-center mt-1 pl-0">
+                                        <small><code>1 USD = <%=totalRates.INR%> INR</code></small>
+                                    </div>
+                                <% } %>
+                                <% if(currentUser.country!=="INR"){ %>
+                                    <div class="col-12 d-flex justify-content-center pl-0 pt-1 mt-2">
+                                        <a class="btn btn-sm btn-success"  id="otherWays2" role="button" href="/myPaypalorders"><i class="fab fa-paypal"></i> Order status</a>
+                                    </div>
+                                <% } %>
+                                <div class="col-12 d-flex justify-content-center pl-0 pt-1">
+                                    <a id="otherWays" href="#" data-toggle="modal" data-target="#paymentwayModal">Looking for other ways to pay?</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <hr class="balhr">
+            
+                <div class="row" id="announcements">
+                    <%if(allAnnounce && allAnnounce.length>0){%>
+                <%allAnnounce.forEach(function(announcements){%>
+                    <div class="col-12 announcemessage">
+                        <div class="headingmessage">
+                            <span class="badge badge-danger">New</span>
+                            <span><%=announcements.title%></span>
+                        </div>
+                        <div class="description">
+                            <span class="dottedUnderline">
+                                <%-announcements.content%>
+                            </span>
+                        </div>
+                        <div class="time">
+                            <span class="dottedUnderline timeH">
+                            <%=moment(announcements.createTime)%>
+                        </span>
+                        </div>
+                    </div>
+                <%})%>
+                <%}%>
+                </div>
+                <hr class="balhr">
+                <%if(currentUser.isAdmin){%>
+                    <form action="" method="" id="postAnn">
+                        <div class="form-group">
+                          <input type="text" class="form-control form-control-sm" id="postTitle" placeholder="Title">
+                        </div>
+                        <div class="form-group">
+                          <label for="postContent">Content</label>
+                          <textarea class="form-control form-control-sm" id="postContent" rows="3"></textarea>
+                        </div>
+                        <button type="submit" id="postButton" class="btn btn-primary btn-sm btn-block">Post Announcements</button>
+                    </form>
+                <%}%>
+                
+                <div class="row chat" id="mmreet">
+
+                </div>
+                <button type="button" id="supportButton" class="btn btn-outline-secondary supportButtonB btn-sm btn-block"><i class="fas fa-phone-alt fa-sm mr-2"></i>Contact Support</button>
+                 
+            </div>
+            
+            
+            
+            
+        </div>
+
+        <div class="bottom">
+                         
+        </div>
+        <div class="modal fade" id="paymentwayModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-body">
+                  <div class="Termsandconditions" >
+                      <div class="row">
+                          <div class="col-9">
+                            <h1 class="agreetitles">OTHER PAYMENT METHODS</h1>
+                          </div>
+                        <div class="col-3">
+                            <button type="button" class="close d-flex justify-content-end" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                      
+                      </div>
+                      
+                      <div>
+                          <p class="lead" style="
+                          font-size: 0.87rem;
+                          line-height: 1.4em;
+                          color: #555;
+                          border-bottom: 1px solid #ddd;
+                          margin-bottom: 14px;
+                          padding-bottom: 14px;">
+                            <span><strong>Fees are applicable.</strong></span>
+                          </p>
+                          <h1 class="agreetitles"><img src="https://logos-download.com/wp-content/uploads/2016/04/Neteller_logo_logotype.png" style="height: 0.5rem;width:2rem;border-radius: 4px;" alt=""> NETELLER(10% FEE)</h1>
+                          <p class="agreepara">
+                            <strong>My NETELLER ID: </strong>danishahmed448@gmail.com<br />
+                            After payment send a screenshot of the payment(the screenshot should contain transaction ID) and your registered Email-Id in my website to the following email address <a href="mailto:shadownet089@gmail.com">shadownet089@gmail.com</a> 
+                          </p>
+                          <h1 class="agreetitles"><img src="https://banner2.cleanpng.com/20180612/oql/kisspng-gift-card-itunes-store-amazon-com-apple-gift-card-5b202b442d0383.9178820515288348841844.jpg" style="height: 1rem;width:1.5rem;border-radius: 4px;" alt=""> ITUNE US GIFT CARD(60% FEE)</h1>
+                          <p class="agreepara">
+                            After payment send your registered Email-Id in my website and the gift card redeem code to the following email address <a href="mailto:shadownet089@gmail.com">shadownet089@gmail.com</a> 
+                          </p>
+                          <h1 class="agreetitles"><img src="https://pluspng.com/img-png/western-union-vector-png-western-union-logo-eps-vector-image-1020.png" style="height: 2rem;width:2.5rem;border-radius: 4px;" alt=""> WESTERN UNION</h1>
+                          <p class="agreepara">
+                            <strong>Whatsapp to buy: </strong>+966596034287
+                          </p>
+                          <h1 class="agreetitles"><img src="https://cdn.iconscout.com/icon/free/png-512/paypal-32-498436.png" style="height: 2rem;width:2.5rem;border-radius: 4px;" alt=""> PAYPAL(20% FEE + PAYPAL FEE)</h1>
+                          <p class="agreepara">
+                            <strong>Whatsapp to buy: </strong>+918072565800
+                          </p>
+                          <h1 class="agreetitles"><img src="https://static.mubasher.info/File.Story_Image/76fe821c88d07c105623509ea73d2e95/640.jpg" style="height: 1rem;width:2rem;border-radius: 4px;" alt=""> <img src="https://vectorlogoseek.com/wp-content/uploads/2018/12/national-commercial-bank-ncb-vector-logo.png" style="height: 1rem;width:2rem;border-radius: 4px;" alt=""> ALL SAUDI BANK TRANSFER</h1>
+                          <p class="agreepara">
+                            <strong>Whatsapp to buy: </strong>+918072565800
+                          </p>
+                          <h1 class="agreetitles"><img src="https://i.ibb.co/98F8v94/kisspng-localbitcoins-cryptocurrency-exchange-bitcoin-atm-digital-coin-5b298911d62961-removebg-preview.png" style="height: 1.2rem;width:1.56rem;border-radius: 2px;" alt=""> HOW TO BUY BTC?</h1>
+                          <p class="agreepara mb-0">
+                            You can buy BTC with any local payment method in any country.Every country has a local seller who sells BTC.You can find such sellers at <a href="https://localbitcoins.com/">Localbitcoins</a><br />
+                         </p>
+                         <strong>All steps:</strong>
+                            <ol style="font-size: 0.9rem;">
+                                <li>Go to localbitcoins and make account</li>
+                                <li>Verify account</li>
+                                <li>Go to bitcoin buying section</li>
+                                <li>Check for bitcoin seller rating (1000 or above)</li>
+                                <li>Press buy button that is next to your preferred seller and type how much you want to buy
+                                    then press confirm</li>
+                                <li>Message the seller that you want to buy BTC</li>
+                                <li>And pay him</li>
+                                <li>Then he will release bitcoin into your wallet in localbitcoins website</li>
+                                <li>Send BTC from localbitcoins wallet to another wallet by using address</li>
+                            </ol>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <div class="w3-main" style="margin-right:200px;">
+            <nav class="navbar navbar-expand navbar-dark">
+            <a class="navbar-brand" href="/">
+                <img src="../../../images/navbarLogo.png" alt="">
+            </a>
+            
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item container">
+                    <% if(currentUser.isAdmin){ %>
+                    <a class="nav-link" href="/dashboard/new"><i style="color:rgb(43, 255, 0);" class="fas fa-plus fa-lg"></i></a>
+                    <%}%>
+                    <a class="nav-link discordLI" href="/discord"><i style="color:#7289DA;" class="fab fa-discord fa-lg"></i></a>
+                    <a class="nav-link" href="/orders"><i style="color:rgb(43, 255, 0);" class="fas fa-file-invoice-dollar fa-lg"></i></a>
+                    <li class="nav-item dropdown ">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" >
+                            <i style="color:rgb(255, 255, 255);" class="far fa-user fa-lg"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" style="font-size: 0.85rem;" aria-labelledby="navbarDropdown2">
+                            <a class="dropdown-item" href="/"><i class="far fa-list-alt m-2 fa-sm"></i>Dashboard</a>
+                            <a class="dropdown-item" href="/orders"><i class="fas fa-file-invoice-dollar fa-sm m-2"></i>Orders</a>
+                            <a class="dropdown-item" href="/settings"><i class="fas fa-cog m-2 fa-sm"></i>Settings</a>
+                            <% if(currentUser.isAdmin){ %>
+                            <a class="dropdown-item" href="/adminPower"><i class="fas fa-wrench m-2 fa-sm"></i>Panel</a>
+                            <a class="dropdown-item" href="/myStats"><i class="fa fa-bar-chart m-2 fa-sm"></i>Sale stats</a>
+                            <% } %>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item ml-2"  href="/logout">Sign Out<i class="fas fa-sign-out-alt m-1 fa-sm"></i></a>
+                        </div>
+                    </li>
+                </li>
+                
+                <li class="nav-item dropdown" id="ff">
+                    <a class="nav-link btn btn-default" href="#" id="navbarDropdown" onclick="showw()">
+                        <i class="fas fa-align-justify fa-lg"></i>
+                    </a>
+                </li>
+
+            </ul>
+            
+            </nav>
+            <div id="videoElem">
+                <div id="liveHeading">
+                    <button type="button" id="closeStream" class="btn close" 
+                data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true"><i class="fa fa-sm fa-bars" aria-hidden="true"></i></span>
+                </button>
+                <div id="liveStreamheading">Live Streaming !!!!</div>  
+                </div>
+            <video id="videoElement"
+            class="video-js"
+            controls="true"
+            preload="auto"
+            autoplay="true"
+            liveui="true"
+            width="640"
+            height="264"
+             ></video>
+        </div>
+
+        
+                    
+        
+        
+   

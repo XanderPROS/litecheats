@@ -1,0 +1,50 @@
+#orderTable{
+    font-size: 0.85em;
+    width: 100%;
+    max-width: 90vw;
+    
+}
+#orderTable th,#orderTable td{
+    text-align: center;
+    padding: 4px 8px;
+    vertical-align: middle;
+    word-wrap: break-all;
+}
+
+#orderTable thead th{
+    background-color: rgba(0,0,0,.07);
+}
+
+
+
+@media(max-width:1100px){
+    #orderTable{
+        font-size: 0.7em;
+    }
+}
+@media(max-width:1000px){
+    #orderTable{
+        font-size: 0.6em;
+    }
+    
+}
+@media(max-width:800px){
+    #orderTable{
+        font-size: 0.5em;
+        width: 100%;
+    }
+    
+}
+@media(max-width:768px){
+    #orderTable{
+        font-size: 0.5em;
+    }
+    
+}
+@media(max-width:576px){
+    #orderTable{
+        font-size: 0.4em;
+        width: 100%;
+    }
+    
+}

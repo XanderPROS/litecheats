@@ -1,0 +1,84 @@
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            var currentUser = <%- JSON.stringify(currentUser)  %>
+            currentUser.myOrders=[]
+            var totalRates = <%- JSON.stringify(totalRates)  %>
+            currentUser.password="asdsa";
+        </script>
+        <script src="/js/main.js"></script>
+        <div class="supportbox">
+           
+            <div id='tawk_5e0010be7e39ea1242a172e5' ></div>
+        </div>
+        
+<!--Start of Tawk.to Script-->
+<script src="https://vjs.zencdn.net/7.8.3/video.js"></script>
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date(); Tawk_API.embedded='tawk_5e0010be7e39ea1242a172e5';
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/5e0010be7e39ea1242a172e5/1e7cn74kn';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);})();
+$(document).on("click",".headerBoxIcon",function(e){
+        e.preventDefault()
+        $('#tawk_5e0010be7e39ea1242a172e5').hide();
+        $('#closeSupport').hide();
+    })
+    var video= player = document.getElementById('videoElement');
+    var urll='https://'+'litecheats.net'+':8443/api/streams';//window.location.hostname
+    mediaOptions={
+            type: 'flv',
+            "isLive":true,
+            url: 'https://'+'litecheats.net'+':8443/live/Js3AuRQapPxyKvhY1glUQnE5Lvt5ehO5.flv'
+        }
+    mediaOptions2={
+                enableWorker: true,
+                enableStashBuffer: false,
+                stashInitialSize: 128,
+            }
+    
+    setInterval(function(){
+        $.getJSON(urll).then(function(data){
+            if(($('#videoElem').css('display').length===0 || $('#videoElem').css('display')==="none") && data.live && data.live.Js3AuRQapPxyKvhY1glUQnE5Lvt5ehO5.publisher!==null){
+            var flvPlayer = flvjs.createPlayer(mediaOptions,mediaOptions2);
+            flvPlayer.attachMediaElement(player);
+            flvPlayer.load();
+            player.play();
+            $('#videoElem').show();
+        }else if(Object.keys(data).length === 0 || (data.live && data.live.Js3AuRQapPxyKvhY1glUQnE5Lvt5ehO5.publisher===null) ){
+            $('#videoElem').hide()
+            flvPlayer.pause();
+            flvPlayer.unload();
+            flvPlayer.detachMediaElement();
+            flvPlayer.destroy();
+        }
+        })
+    },5000)
+     
+
+        setInterval(() => {
+                if (!video.buffered.length) {
+                    return;
+                }
+
+                let end = video.buffered.end(0);
+                let diff = end - video.currentTime;
+
+                if (diff >= 1.5){
+                    video.currentTime = end;
+                    video.play()
+                }
+            }, 2000);
+    
+    
+      
+</script>
+<!--End of Tawk.to Script-->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    </body>
+</html>

@@ -1,0 +1,84 @@
+<%- include("../dashboard/partials/headerfirst") %>
+<title>Settings</title>
+<%- include("../dashboard/partials/headersecond") %>
+
+
+    <div class="container-fluid productTab vf">
+      <%if(error && error.length > 0){%>
+        <div class="alert alert-danger" id="errorBox" role="alert">
+            <p id="err"><%= error %></p>
+        </div>
+    <%}%>
+    <%if(success && success.length > 0){%>
+        <div class="alert alert-success" id="successBox" role="alert">
+            <p id="suc"><%= success %></p>
+        </div>
+    <%}%>
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header" id="settingtitle">
+                <i class="fas fa-cog m-2 fa-sm"></i>Settings
+              </div>
+              <form action="/uploadPro" method="POST" enctype="multipart/form-data">
+                <div class="card-body">
+                  <div class="passsection">
+                    <h6 class="card-title">Upload profile picture</h6>
+                      <div class="form-row">
+                        <div class="form-group col-12 col-lg-4">
+                        <label>File:</label> 
+                        <input type="file" accept="image/*" id="image" name="image" required >
+                        <small id="newPasshelp" class="form-text text-muted">Maximum Size : 3MB</small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer pr-0 d-flex justify-content-end" style="background-color: transparent;">
+                  <button type="submit" id="savebuttton" style="max-width: 100px;width: 100px;color: rgb(0, 0, 0);border: black 1px solid;" class="btn btn-warning">Upload</button>
+                </div>
+              </form>
+              </div>
+            </div>
+            <div class="card">
+              <form action="/saveSettings" method="POST">
+                <div class="card-header" id="settingtitle">
+                  <i class="fa fa-lock" aria-hidden="true"></i>
+                  Change password
+                </div>
+                <div class="card-body">
+                  <div class="passsection">
+                    <h6 class="card-title">Password Information</h6>
+                      <div class="form-row">
+                        <div class="form-group col-12 col-lg-4">
+                        <label>Current password:</label> 
+                        <input type="text" name="currentPass" class="form-control form-control-sm">
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <div class="form-group col-12 col-lg-4">
+                          <label>New password:</label> 
+                          <input type="password" name="newPass" class="form-control form-control-sm">
+                          <small id="newPasshelp" class="form-text text-muted">Password must be at least 6 characters</small>
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <div class="form-group col-12 col-lg-4">
+                          <label>Confirm:</label> 
+                          <input type="password" name="confirmPass" class="form-control form-control-sm">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer pr-0 d-flex justify-content-end" style="background-color: transparent;">
+                  <button type="submit" id="savebuttton" style="max-width: 100px;width: 100px;color: rgb(0, 0, 0);border: black 1px solid;" class="btn btn-warning">Save</button>
+                </div>
+              </form>
+              </div>
+            </div>
+          </div>
+
+    </div>
+</div>
+<%- include("../dashboard/partials/footer") %>

@@ -1,0 +1,154 @@
+
+
+form{
+    margin: 0 auto;
+    width: 300px;
+    padding: 1rem;
+    margin-top: 15vh;
+    border: rgba(0, 0, 0, 0.13) solid 1px;
+    border-radius: 3px;
+}
+img{
+    width:103px;
+    text-align: center;
+    display: block;
+    margin: 0.4rem auto;
+    margin-bottom: 0px;
+    
+}
+label{
+    margin:0px;
+    font-size: small;
+    font-weight: 650;
+    letter-spacing: 0.01px;
+}
+#forgot{
+    float: right;
+    font-size: small;
+    font-weight: 500;
+    letter-spacing: 0.01px;
+}
+button{
+    width: 100%;
+    
+    
+}
+.btn{
+    border: rgba(0, 0, 0, 0.452) solid 0.6px;
+}
+#signin{
+    font-weight: 100;
+    font-size: smaller;
+    margin-bottom: 0;
+}
+#heading{
+    margin-bottom: 0.9rem;
+}
+#buttonText{
+    font-size: small;
+}
+#signIco{
+    font-size: x-small;
+}
+.warning{
+    color: rgb(255, 34, 34);
+}
+
+.form-control:focus{
+    border-color: rgb(231, 169, 0);
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0px 2px 14px rgba(231, 169, 0, 0.753); 
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0px 2px 14px rgba(231, 169, 0, 0.753);
+}
+.bad:focus{
+    border-color: rgb(231, 0, 0);
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0px 2px 14px rgba(231, 0, 0, 0.753); 
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0px 2px 14px rgba(231, 0, 0, 0.753);
+}
+.baddy{
+    border-color: rgb(231, 0, 0);
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0px 2px 14px rgba(231, 0, 0, 0.753); 
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0px 2px 14px rgba(231, 0, 0, 0.753);
+}
+#hrbelowFo{
+    border: none;
+    height: 1px;
+    background-image: -webkit-linear-gradient(left, #eee, #000, #eee);
+    background-image:    -moz-linear-gradient(left, #eee, #000, #eee);
+    background-image:     -ms-linear-gradient(left, #eee, #000, #eee);
+    background-image:      -o-linear-gradient(left, #eee, #000, #eee);
+}
+#hrbelowIm{
+    margin-top: 0px;
+    border: 1px solid rgba(0, 0, 0, 0);
+}
+.alert-danger{
+    margin-top:1rem;
+    background-color: white;
+    border-color: rgb(231, 0, 0);
+    -webkit-box-shadow: inset 0px 0px 7px rgba(231, 0, 0, 0.753); 
+    box-shadow: inset 0px 0px 7px rgba(231, 0, 0, 0.753);
+    font-size: small;
+}
+
+.alert-success{
+    margin-top:1rem;
+    background-color: white;
+    border-color: rgb(0, 231, 0);
+    -webkit-box-shadow: inset 0px 0px 7px rgba(0, 231, 0, 0.753); 
+    box-shadow: inset 0px 0px 7px rgba(0, 231, 0, 0.753);
+    font-size: small;
+}
+#errorBox{
+    position: relative;
+    padding-left: 2.8rem;
+}
+#errIco{
+    position: absolute;
+    left:1rem;
+    top:0.95rem;
+    font-size: medium;
+}
+#err{
+    margin: 0px 0px;
+}
+#successBox{
+    position: relative;
+    padding-left: 2.8rem;
+}
+#sucIco{
+    position: absolute;
+    left:1rem;
+    top:0.95rem;
+    font-size: medium;
+}
+#suc{
+    margin: 0px 0px;
+}
+.headAlert{
+    margin-bottom: 0px;
+}
+#verI{
+    font-size: smaller;
+    margin-bottom: 0.2rem;
+}
+#heading2{
+    margin:0;
+}
+#passAssist{
+    font-size: smaller;
+    margin-bottom: 0.6rem;
+}
+.agreetitles{
+    font-size: 1.2rem;
+    text-transform: capitalize;
+}
+.agreepara{
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-size: 0.7rem;
+    line-height: 19px;
+    color: #111;
+}
