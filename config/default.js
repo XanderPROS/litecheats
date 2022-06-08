@@ -16,8 +16,8 @@ const config = {
         },
         https: {
             port: 8443,
-            key: '/etc/letsencrypt/live/litecheats.net/privkey.pem',
-            cert: '/etc/letsencrypt/live/litecheats.net/fullchain.pem',
+            //key: '/etc/letsencrypt/live/litecheats.net/privkey.pem',
+            //cert: '/etc/letsencrypt/live/litecheats.net/fullchain.pem',
           },
         trans: {
             ffmpeg: '/usr/bin/ffmpeg',
