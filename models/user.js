@@ -19,6 +19,7 @@ var userSchema = new mongoose.Schema({
     profilePic:String,
     tempRechargeAmount:String,
     lcbalance:String,
+    razor_orderId:{type:String,default:''},
     paypalEmails:[],
     isAdmin : {type: Boolean, default:false},
     isAgent : {type: Boolean, default:false},
