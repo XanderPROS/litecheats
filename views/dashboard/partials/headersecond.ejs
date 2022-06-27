@@ -1,6 +1,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.25.0/moment.min.js"></script>
 <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
         <script src="/js/dashboard.js"></script>
         <script src="https://cdn.bootcss.com/flv.js/1.5.0/flv.min.js"></script>
     </head>
@@ -91,6 +92,11 @@
                                             <button type="submit" class="btn btn-warning btn-sm" formaction="/recharge_paytm"><img src="/images/paytm.png" height="23" width="80" alt=""></button>
                                         </div>
                                 <% } %>
+                                <% if(currentUser.country==="INR"){ %>
+                                    <div class="col d-flex justify-content-end pl-0">
+                                        <button type="submit" class="btn btn-warning btn-sm" id="rzp-button1"><img src="/images/razorpay.png" height="23" width="80" alt=""></button>
+                                    </div>
+                            <% } %>
                                 <div class="col d-flex justify-content-center pl-0">
                                     <button type="submit" class="btn btn-warning btn-sm" formaction="/create_charge"><img src="/images/bitcoin.png" height="23" width="80" alt=""></button>
                                 </div>

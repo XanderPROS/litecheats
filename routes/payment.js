@@ -1,4 +1,5 @@
 const express = require("express"),
+Razorpay = require('razorpay'),
       User=require("../models/user"),
       PaypalBlack=require("../models/paypalBlacklist"),
       PayPalOrder=require("../models/orderlist"),
@@ -22,6 +23,10 @@ paypal.configure({
     'client_id': process.env.PAYPAL_CLIENT_ID,
     'client_secret': process.env.PAYPAL_CLIENT_SECRET
 });
+var instance = new Razorpay({
+    key_id:process.env.RAZOR_KEY,
+    key_secret:process.env.RAZOR_SECRET
+})
 router.post("/recharge_paypal",middleware.isLoggedIn,function(req,res){
         if(req.user.country==="INR"){
             return res.redirect('back');
@@ -231,7 +236,22 @@ router.post("/recharge_paytm",middleware.isLoggedIn,function(req,res){
 	}
 	
 })
-
+router.post("/razorpay_orderId",middleware.isLoggedIn,async(req,res)=>{
+	if(req.user.country==="INR"){
+		if(!req.body.rechargeAmount){
+            return res.redirect("back");
+        }
+        var options = {
+            amount: Math.round(req.body.rechargeAmount) * 100,
+            currency: 'INR',
+        }
+        var order = await instance.orders.create(options);
+        res.status(200).json({order});
+	}else{
+		return res.redirect("back");
+	}
+	
+})
 router.post("/success_paytm/:id",function(req,res){
     var paytmChecksum = "";
     /**

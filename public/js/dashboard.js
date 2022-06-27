@@ -44,3 +44,53 @@ $(document).ready(function(){
     $(".bottom").css("display", "block");
   })
 })
+
+document.getElementById('rzp-button1').onclick = async(e)=>{
+  e.preventDefault();
+  const res = await fetch('/razorpay_orderId', {
+    body: JSON.stringify({
+        rechargeAmount:document.getElementById("rechargeAmount").value
+    }),
+    headers: {
+        "Content-Type": "application/json",
+    },
+    method: "POST",
+})
+const { order } = await res.json();
+const rzrPay = await initializeRazorpay();
+if (!rzrPay) {
+    alert("Razorpay SDK Failed to load");
+    return;
+}
+var options = {
+  key: '', // Enter the Key ID generated from the Dashboard
+  name: "litecheats",
+  currency: order.currency,
+  amount: order.amount,
+  order_id: order.id,
+  description: "Thank you for choosing Litecheats",
+  image: "https://www.goldencreche.com/logo.png",
+  handler: async (response) => {
+    location.reload();
+  },
+};
+
+const paymentObject = new window.Razorpay(options);
+paymentObject.open();
+}
+const initializeRazorpay = () => {
+  return new Promise((resolve) => {
+      const script = document.createElement("script");
+      script.src = "https://checkout.razorpay.com/v1/checkout.js";
+      // document.body.appendChild(script);
+
+      script.onload = () => {
+          resolve(true);
+      };
+      script.onerror = () => {
+          resolve(false);
+      };
+
+      document.body.appendChild(script);
+  });
+};
