@@ -89,14 +89,10 @@
                                 <%}%>
                                 <% if(currentUser.country==="INR"){ %>
                                         <div class="col d-flex justify-content-end pl-0">
-                                            <button type="submit" class="btn btn-warning btn-sm" formaction="/recharge_paytm"><img src="/images/paytm.png" height="23" width="80" alt=""></button>
+                                            <button type="submit" class="btn btn-warning btn-sm" id="rzp-button1"><img src="/images/razorpay.png" height="23" width="80" alt=""></button>
                                         </div>
                                 <% } %>
-                                <% if(currentUser.country==="INR"){ %>
-                                    <div class="col d-flex justify-content-end pl-0">
-                                        <button type="submit" class="btn btn-warning btn-sm" id="rzp-button1"><img src="/images/razorpay.png" height="23" width="80" alt=""></button>
-                                    </div>
-                            <% } %>
+                               
                                 <div class="col d-flex justify-content-center pl-0">
                                     <button type="submit" class="btn btn-warning btn-sm" formaction="/create_charge"><img src="/images/bitcoin.png" height="23" width="80" alt=""></button>
                                 </div>
