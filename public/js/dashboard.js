@@ -63,13 +63,13 @@ if (!rzrPay) {
     return;
 }
 var options = {
-  key: '', // Enter the Key ID generated from the Dashboard
+  key: 'rzp_test_B33MBvPgt3JVHA', // Enter the Key ID generated from the Dashboard
   name: "litecheats",
   currency: order.currency,
   amount: order.amount,
   order_id: order.id,
   description: "Thank you for choosing Litecheats",
-  image: "https://www.goldencreche.com/logo.png",
+  image: "https://infinite-badlands-08063.herokuapp.com/images/navbarLogo.png",
   handler: async (response) => {
     location.reload();
   },
