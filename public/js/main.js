@@ -111,6 +111,7 @@ $(document).ready(function(){
         
     })
     $(document).on("click",".buyButt",function(e){
+        e.preventDefault();
         var userBalance=currentUser.lcbalance.toString().match(/^-?\d+(?:\.\d{0,2})?/)[0];
         var total=0;
         customerSelected=$(this).parent().parent().find('.nhy option:selected').text();//Day | 10$ | Month
