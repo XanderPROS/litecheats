@@ -123,6 +123,7 @@ $(document).ready(function(){
             total=total*totalRates.INR;
         }
         total=total.toString().match(/^-?\d+(?:\.\d{0,2})?/)[0]
+        console.log(total);
         if(numberOfkeys>stock){
             e.preventDefault();
             $('#quantityStock').modal('show')
