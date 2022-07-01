@@ -113,14 +113,18 @@ $(document).ready(function(){
     $(document).on("click",".buyButt",function(e){
         e.preventDefault();
         var userBalance=currentUser.lcbalance.toString().match(/^-?\d+(?:\.\d{0,2})?/)[0];
+        console.log(userBalance)
         var total=0;
         customerSelected=$(this).parent().parent().find('.nhy option:selected').text();//Day | 10$ | Month
+        console.log(customerSelected)
         var amountperkey=+(customerSelected.substring(customerSelected.indexOf(' ',customerSelected.indexOf(' ')+1)+1, customerSelected.indexOf('$')));
+        console.log(amountperkey)
         var stock=+(customerSelected.substring(customerSelected.indexOf(':')+1));
+        console.log(stock)
         var numberOfkeys=+($(this).parent().parent().find('.inputQuantity').val());
         total=amountperkey*numberOfkeys;
         if(currentUser.country==="INR"){
-            
+            console.log('totalINR',totalRates.INR);
             total=total*totalRates.INR;
         }
         total=total.toString().match(/^-?\d+(?:\.\d{0,2})?/)[0]
