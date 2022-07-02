@@ -1,132 +1,98 @@
-        <script src="/socket.io/socket.io.js"></script>
-        <script>
-            var currentUser = <%- JSON.stringify(currentUser)  %>
-            currentUser.myOrders=[]
-            var totalRates = <%- JSON.stringify(totalRates)  %>
-            currentUser.password="asdsa";
-        </script>
-        <script src="/js/main.js"></script>
-        <div class="supportbox">
-           
-            <div id='tawk_629b0f62b0d10b6f3e75a543' ></div>
-        </div>
-        
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    var currentUser = <% - JSON.stringify(currentUser) %>
+        currentUser.myOrders=[]
+    var totalRates = <% - JSON.stringify(totalRates) %>
+        currentUser.password="asdsa";
+</script>
+<script src="/js/main.js"></script>
+<div class="supportbox">
+
+    <div id='tawk_629b0f62b0d10b6f3e75a543'></div>
+</div>
+
 <!--Start of Tawk.to Script-->
-<script src="https://vjs.zencdn.net/7.8.3/video.js"></script>
+
 <script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date(); Tawk_API.embedded='tawk_629b0f62b0d10b6f3e75a543';
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/629b0f62b0d10b6f3e75a543/default';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);})();
-$(document).on("click",".headerBoxIcon",function(e){
+    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date(); Tawk_API.embedded = 'tawk_629b0f62b0d10b6f3e75a543';
+    (function () {
+        var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+        s1.async = true;
+        s1.src = 'https://embed.tawk.to/629b0f62b0d10b6f3e75a543/default';
+        s1.charset = 'UTF-8';
+        s1.setAttribute('crossorigin', '*');
+        s0.parentNode.insertBefore(s1, s0);
+    })();
+    $(document).on("click", ".headerBoxIcon", function (e) {
         e.preventDefault()
         $('#tawk_629b0f62b0d10b6f3e75a543').hide();
         $('#closeSupport').hide();
     })
-    var video= player = document.getElementById('videoElement');
-    //var urll='https://'+'litecheats.net'+':8443/api/streams';//window.location.hostname
-    mediaOptions={
-            type: 'flv',
-            "isLive":true,
-            //url: 'https://'+'litecheats.net'+':8443/live/Js3AuRQapPxyKvhY1glUQnE5Lvt5ehO5.flv'
-        }
-    mediaOptions2={
-                enableWorker: true,
-                enableStashBuffer: false,
-                stashInitialSize: 128,
-            }
-    
-    setInterval(function(){
-        $.getJSON(urll).then(function(data){
-            if(($('#videoElem').css('display').length===0 || $('#videoElem').css('display')==="none") && data.live && data.live.Js3AuRQapPxyKvhY1glUQnE5Lvt5ehO5.publisher!==null){
-            var flvPlayer = flvjs.createPlayer(mediaOptions,mediaOptions2);
-            flvPlayer.attachMediaElement(player);
-            flvPlayer.load();
-            player.play();
-            $('#videoElem').show();
-        }else if(Object.keys(data).length === 0 || (data.live && data.live.Js3AuRQapPxyKvhY1glUQnE5Lvt5ehO5.publisher===null) ){
-            $('#videoElem').hide()
-            flvPlayer.pause();
-            flvPlayer.unload();
-            flvPlayer.detachMediaElement();
-            flvPlayer.destroy();
-        }
+
+
+
+
+
+
+    document.getElementById('rzp-button1').onclick = async (e) => {
+        e.preventDefault();
+        const res = await fetch('/razorpay_orderId', {
+            body: JSON.stringify({
+                rechargeAmount: document.getElementById("rechargeAmount").value
+            }),
+            headers: {
+                "Content-Type": "application/json",
+            },
+            method: "POST",
         })
-    },5000)
-     
+        const { order } = await res.json();
+        const rzrPay = await initializeRazorpay();
+        if (!rzrPay) {
+            alert("Razorpay SDK Failed to load");
+            return;
+        }
+        var options = {
+            key: 'rzp_live_m8Hxh1JhLrxXPh', // Enter the Key ID generated from the Dashboard
+            name: "Litecheats Official",
+            currency: order.currency,
+            amount: order.amount,
+            order_id: order.id,
+            description: "LC Recharge Section",
+            image: "https://litecheats.org/images/litecheats.png",
+            handler: async (response) => {
+                location.reload();
+            },
+        };
 
-        setInterval(() => {
-                if (!video.buffered.length) {
-                    return;
-                }
+        const paymentObject = new window.Razorpay(options);
+        paymentObject.open();
+    }
+    const initializeRazorpay = () => {
+        return new Promise((resolve) => {
+            const script = document.createElement("script");
+            script.src = "https://checkout.razorpay.com/v1/checkout.js";
+            // document.body.appendChild(script);
 
-                let end = video.buffered.end(0);
-                let diff = end - video.currentTime;
+            script.onload = () => {
+                resolve(true);
+            };
+            script.onerror = () => {
+                resolve(false);
+            };
 
-                if (diff >= 1.5){
-                    video.currentTime = end;
-                    video.play()
-                }
-            }, 2000);
-    
-            document.getElementById('rzp-button1').onclick = async(e)=>{
-  e.preventDefault();
-  const res = await fetch('/razorpay_orderId', {
-    body: JSON.stringify({
-        rechargeAmount:document.getElementById("rechargeAmount").value
-    }),
-    headers: {
-        "Content-Type": "application/json",
-    },
-    method: "POST",
-})
-const { order } = await res.json();
-const rzrPay = await initializeRazorpay();
-if (!rzrPay) {
-    alert("Razorpay SDK Failed to load");
-    return;
-}
-var options = {
-  key: 'rzp_live_m8Hxh1JhLrxXPh', // Enter the Key ID generated from the Dashboard
-  name: "Litecheats Official",
-  currency: order.currency,
-  amount: order.amount,
-  order_id: order.id,
-  description: "LC Recharge Section",
-  image: "https://litecheats.org/images/litecheats.png",
-  handler: async (response) => {
-    location.reload();
-  },
-};
+            document.body.appendChild(script);
+        });
+    };
 
-const paymentObject = new window.Razorpay(options);
-paymentObject.open();
-}
-const initializeRazorpay = () => {
-  return new Promise((resolve) => {
-      const script = document.createElement("script");
-      script.src = "https://checkout.razorpay.com/v1/checkout.js";
-      // document.body.appendChild(script);
-
-      script.onload = () => {
-          resolve(true);
-      };
-      script.onerror = () => {
-          resolve(false);
-      };
-
-      document.body.appendChild(script);
-  });
-};
-      
 </script>
 <!--End of Tawk.to Script-->
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    </body>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+</body>
+
 </html>

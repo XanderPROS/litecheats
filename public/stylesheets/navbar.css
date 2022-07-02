@@ -804,14 +804,7 @@ body{
     background-color: #ffc107;
     color: white;
 }
-#videoElement{
-    
-    height: 145px;
-    width: 260px;
 
-    
-
-}
 #closeStream{
     position: absolute;
     z-index: 8;
@@ -820,34 +813,9 @@ body{
     left:0rem;
     top:0.2rem;
 }
-#videoElem{
-    position: fixed;
-    bottom: 0;
-    right:300px;
-    margin-bottom: 1.9rem;
-    z-index: 7;
-    border-radius: 3px;
-    display: none;
-}
-#liveStreamheading{
-    position: absolute;
-    z-index: 8;
-    color: rgb(255, 0, 0);
-    left:1.9rem;
-    font-family:  'Bangers', cursive;
-    letter-spacing: 0.2rem;
-    top:0.2rem;
-}
-#liveHeading{
-    height:1.8rem;
-    width:100%;
-    border-radius: 1px;
-}
-@media(max-width:768px){
-    #videoElem{
-        right: 5px;
-    }
-}
+
+
+
 @media(max-width:415px){
     .discordLI{
         display: none;
