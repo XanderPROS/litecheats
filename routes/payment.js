@@ -39,6 +39,7 @@ router.post("/recharge_paypal", middleware.isLoggedIn, function (req, res) {
     var gst = fee * 0.18;
     var totalfee = Math.round(fee + gst);
     var totalPrice = +req.body.rechargeAmount + totalfee;
+    console.log(totalPrice)
     res.render('dashboard/paypalMid', { totalPrice: totalPrice, normalPrice: req.body.rechargeAmount, email: process.env.PAYPAL_EMAIL, note: process.env.PAYPAL_NOTE });
 
 })
