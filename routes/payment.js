@@ -262,7 +262,7 @@ router.post("/razorpay_recharge", async (req, res) => {
     if (validateWebhookSignature(JSON.stringify(req.body), req.headers['x-razorpay-signature'], process.env.RAZOR_WEBHOOK_SECRET)) {
         try {
             const event = req.body.event;
-            if (event === 'payment.authorized') {
+            if (event === 'payment.captured') {
                
                 const orderId = req.body.payload.payment.entity.order_id;
                 const amount = req.body.payload.payment.entity.amount/100;
