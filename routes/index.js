@@ -4,10 +4,10 @@ var router=app.Router();
 var middleware = require("../middleware");
 
 router.get("/",middleware.isLoggedOut,function(req,res){
-    res.render("authentication/login");
+    res.redirect("/home");
 })
 router.get("*",function(req,res){
-    res.redirect("/login")
+    res.redirect("/")
 })
 
 module.exports = router;

@@ -1,0 +1,42 @@
+<%-include("./partials/header")%>
+    <div class="container homeContainer">
+        <div class="homeContainerLeft">
+            <div class="homeContainerLeft_blogPosts">
+                <% posts.forEach((post)=>{ %>
+                    <div class="homeContainerLeft_blogPosts_post">
+                        <div class="homeContainerLeft_blogPosts_post_image">
+                            <img src='<%= post.mainImage %>' />
+                        </div>
+                        <div class="homeContainerLeft_blogPosts_post_text">
+                            <div class="homeContainerLeft_blogPosts_post_text_tagdate">
+                                <div class="homeContainerLeft_blogPosts_post_text_tag">
+
+                                    <%= post.categories.title %>
+
+
+                                </div>
+                                <div class="homeContainerLeft_blogPosts_post_text_date">
+                                    <%= dateString(post._createdAt) %>
+                                </div>
+                            </div>
+                            <h2 class="homeContainerLeft_blogPosts_post_text_heading">
+                                
+                                <a href="/posts/<%=post.categories.title%>/<%=post.slug.current%>">
+                                    <i class="fas fa-link"></i>
+                                    <%=post.title%>
+                                    </a>
+                            </h2>
+                            <div class="homeContainerLeft_blogPosts_post_text_description">
+                                <%- post.body.replace(/<[^>]+>/g, '').replace(/&nbsp;/g, '').substring(0,145)%>...
+                            </div>
+                        </div>
+                    </div>
+                    <% }) %>
+
+            </div>
+        </div>
+        <div class="homeContainerRight">
+
+        </div>
+    </div>
+    <%-include("./partials/footer")%>

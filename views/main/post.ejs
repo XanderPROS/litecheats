@@ -1,0 +1,65 @@
+<%-include("./partials/header")%>
+    <div class="container homeContainer">
+        <div class="homeContainerLeft">
+            <div class="homeContainerLeft_blogPosts post_poast">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/"><i class="fas fa-home"></i></a></li>
+                        <li class="breadcrumb-item"><a href="/search/<%= post.categories.title%>">
+                                <%= post.categories.title%>
+                            </a></li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            <%= post.title%>
+                        </li>
+                    </ol>
+                </nav>
+                <hr class="hrbelowIm">
+                <h2 class="postTitle">
+                    <%= post.title %>
+                </h2>
+                <hr class="hrbelowIm">
+                <blockquote class="blockquote">
+                    <footer class="blockquote-footer">by <cite title="Source Title">
+                            <%=post.author.name%>
+                        </cite> on <cite title="Source Title">
+                            <%=dateString(post._createdAt)%>
+                        </cite> in <cite title="Source Title"><a href="/search/<%= post.categories.title%>">
+                                <%=post.categories.title%>
+                            </a></cite></footer>
+                </blockquote>
+                <hr class="hrbelowIm">
+                <%- post.body %>
+            </div>
+            <div class="post_footer">
+                <div class="post_footer_discord">
+    
+                </div>
+                <div class="share-box">
+                    <h8 class="share-title">Share This:</h8>
+                    <div class="share-art">
+                        <a class="fac-art"
+                            href="http://www.facebook.com/sharer.php?u=https://www.litecheats.org/posts/<%= post.categories.title.replace(/ /g, '%20')%>/<%=post.slug.current%>"
+                            onclick="window.open(this.href, 'windowName', 'width=600, height=400, left=24, top=24, scrollbars, resizable'); return false;"
+                            rel="nofollow" target="_blank"><i class="fa fa-facebook"></i><span class="resp_del">
+                                Facebook</span></a>
+                        <a class="twi-art"
+                            href="http://twitter.com/share?url=https://www.litecheats.org/posts/<%= post.categories.title.replace(/ /g, '%20')%>/<%=post.slug.current%>"
+                            onclick="window.open(this.href, 'windowName', 'width=600, height=400, left=24, top=24, scrollbars, resizable'); return false;"
+                            rel="nofollow" target="_blank"><i class="fa fa-twitter"></i><span class="resp_del2">
+                                Twitter</span></a>
+                        <whatsapp href="https://www.litecheats.org/posts/<%= post.categories.title.replace(/ /g, '%20')%>/<%=post.slug.current%>"
+                            text="REVO CHEAT Root and Non Root"></whatsapp>
+                        <a class="wat-art"
+                            href="whatsapp://send?text=<%= post.title %> >> https://www.litecheats.org/posts/<%= post.categories.title.replace(/ /g, '%20')%>/<%=post.slug.current%>"
+                            rel="nofollow" target="_blank"><i class="fa fa-whatsapp"></i><span class="resp_del5">
+                                Whatsapp</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="homeContainerRight">
+
+        </div>
+    </div>
+    <%-include("./partials/footer")%>

@@ -88,6 +88,7 @@ var indexRoutes = require("./routes/index"),
     authRoutes=require("./routes/users"),
     payRoutes=require("./routes/payment"),
     dashRoutes=require("./routes/dashboard");
+    homeRoutes=require("./routes/home");
 
 
 mongoose.set('useUnifiedTopology',true);
@@ -150,6 +151,7 @@ app.use(async function(req,res,next){
 app.use(authRoutes);
 app.use(dashRoutes);
 app.use(payRoutes);
+app.use(homeRoutes)
 app.use(indexRoutes);
 
 // app.use("/campgrounds",campgroundRoutes);

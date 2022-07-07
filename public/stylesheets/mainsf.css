@@ -1,0 +1,164 @@
+.footer{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    background-color: rgb(25, 35, 45);
+    padding: 4em 0em;
+}
+.footer_logos{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 2em;
+    font-weight: 600;
+    max-width: 50%;
+    flex-basis: 50%;
+    
+}
+.footer_logos_brand{
+    margin-bottom: 0.3em;
+}
+.footer_logos_brand img{
+    width: 200px;
+    margin-left: -5px;
+}
+.footer_logos_socialmedia{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 170px;
+    background: linear-gradient(-30deg, #05a4e9, #eb1e07, #0ba4ca, #eb3c07);
+    border-radius: 3px;
+    padding: 0.5em;
+    animation: gradient 8s ease-in infinite;
+    background-size: 400% 400%;
+    margin-top: 1em;
+}
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+.footer_logos_socialmedia a{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  
+}
+.footer_logos_socialmedia a svg{
+    margin-right: 3px;
+    margin-left: 3px;
+    font-size: 30px;
+    border: 5px solid black;
+    border-radius: 15px;
+    background-color: black;
+    color: white;
+    width: 30px;
+    height: 30px;
+    overflow: hidden;
+}
+.footer_logos_socialmedia a img{
+    margin-right: 3px;
+    margin-left: 3px;
+    font-size: 30px;
+    filter: brightness(120%);
+    border-radius: 15px;
+    background-color: transparent;
+    color: white;
+    width: 25px;
+    height: 25px;
+    overflow: hidden;
+   
+}
+.footer_about{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 2em;
+    max-width: 50%;
+    flex-basis: 50%;
+   color: white;
+}
+.footer_about_title{
+    font-family: "Playfair Display",Arial,Helvetica,sans-serif;
+    font-size: 1.44rem;
+    font-weight: 700;
+    color: #ffffff;
+    
+}
+.footer_about_location,.footer_about_phonenumber,.footer_about_time,.footer_about_title{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 5px;
+    width: 100%;
+}
+
+.footer_about_location svg,.footer_about_phonenumber svg,.footer_about_time svg{
+    margin-right: 0.4em;
+    font-size: 30px;
+    border: 5px solid black;
+    border-radius: 50px;
+    background-color: black;
+    color: white;
+   width: 30px;
+   height: 30px;
+}
+
+.footer_about_location_text,.footer_about_phonenumber_number,.footer_about_time_text{
+    font-family: "Source Sans Pro",Arial,Helvetica,sans-serif;
+    font-size: .85em;
+    width: 80%;
+    font-weight: 600;
+}
+
+@media(max-width:373px){
+    .footer_about{
+        width: 100%;
+        max-width: 100%;
+    }
+    .footer_about_location_text,.footer_about_phonenumber_number,.footer_about_time_text{
+        font-family: "Source Sans Pro",Arial,Helvetica,sans-serif;
+        font-size: .67em;
+        font-weight: 600;
+    }
+    .footer_about_location,.footer_about_phonenumber,.footer_about_time,.footer_about_title{
+        width: 100%;
+    }
+    .footer_about_location svg,.footer_about_phonenumber svg,.footer_about_time svg{
+        width: auto;
+        height: auto;
+        font-size: 0.67em;
+    }
+}
+@media(max-width:720px){
+    .footer{
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+    }
+    .footer_about{
+        width: 100%;
+        max-width: 100%;
+    }
+    .footer_about_location_text,.footer_about_phonenumber_number,.footer_about_time_text{
+        font-family: "Source Sans Pro",Arial,Helvetica,sans-serif;
+        font-size: .77em;
+        font-weight: 600;
+        
+    }
+    
+    .footer_about_location,.footer_about_phonenumber,.footer_about_time,.footer_about_title{
+        width: 100%;
+    }
+}
+

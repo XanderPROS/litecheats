@@ -1,0 +1,47 @@
+.brandContainer {
+    display: flex;
+    overflow-x: hidden;
+    justify-content: center;
+    align-items: center;
+    padding-top: 3rem;
+    flex-direction: row;
+    max-width: 1500px;
+    margin: 0px auto;
+    flex-wrap: wrap;
+}
+
+.brandContainer .header {
+    flex-basis: 50%;
+    max-width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1em;
+    
+
+}
+
+.brandContainer .header img {
+    max-width: 100%;
+
+}
+
+
+@media(max-width:767px) {
+    .brandContainer {
+
+        flex-direction: column;
+        background-color: rgb(37, 31, 32);
+    }
+
+    .brandContainer .header {
+        padding: 0.3em 0em;
+    }
+
+    .brandContainer .header {
+        flex-basis: 100%;
+        max-width: 100%;
+
+
+    }
+}
