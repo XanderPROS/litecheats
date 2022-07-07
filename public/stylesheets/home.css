@@ -177,7 +177,7 @@ cite a{
 .contactus_heading{
     
     color: rgb(61, 58, 40);
-    font-size: 2.95rem;
+    
     font-weight: 800;
     line-height: 1.4em;
     margin-bottom: 1em;
@@ -525,7 +525,7 @@ cite a{
 
 .share-box {
     position: relative;
-    padding: 10px 10px;
+    padding: 10px 0px;
     text-align: center;
     overflow: hidden;
     display: flex;

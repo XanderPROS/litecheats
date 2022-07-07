@@ -18,8 +18,8 @@ router.get("/home",async(req,res)=>{
     res.render("main/home",{posts:posts,dateString:dateString});
 })
 
-router.get("/posts/:postCategory/:postSlug",async(req,res)=>{
-    const postCategory = req.params.postCategory;
+router.get("/posts/:postCategorySlug/:postSlug",async(req,res)=>{
+    const postCategorySlug = req.params.postCategorySlug;
     const postSlug = req.params.postSlug;
     console.log(postSlug)
     const query = `*[_type=="post" && slug.current=="${postSlug}"]{_createdAt,author->,body,categories[0]->,mainImage,slug,title}`;
