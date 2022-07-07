@@ -20,16 +20,28 @@
 .homeContainerRight{
     flex-basis: 32%;
     max-width: 32%;
+    padding-left: 1em;
+}
+.homeContainerRight_searchWidget{
+    width: 100%;
+    max-width: 300px;
+}
+.homeContainerRight_searchWidget .input-group{
+    width: 100%;
 }
 .homeContainerRight_discordWidget{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
+   width: 100%;
+   max-width: 300px;
 }
+
 .homeContainerRight_discordWidget iframe{
     max-width: 100%;
+
+    width: 100%;
     height: 500px;
 }
 .homeContainerRight_discordWidget_warning{
@@ -177,6 +189,13 @@ cite a{
         margin-bottom: 1em;
         width: 100%;
     }
+    .homeContainerRight_discordWidget,.homeContainerRight_searchWidget{
+        width: 100%;
+        max-width: 100%;
+    }
+    .homeContainerRight_discordWidget iframe{
+        width: 100%;
+    }
     .homeContainerLeft_blogPosts_post_image{
         flex-basis: 50%;
         max-width: 50%;
@@ -185,7 +204,8 @@ cite a{
 
     .homeContainerRight_discordWidget iframe{
         
-        height: 50vh;
+        height: 60vh;
+        max-height: 500px;
     }
     .homeContainerLeft_blogPosts_post_text{
      
