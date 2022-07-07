@@ -83,6 +83,7 @@ body,
         flex-direction: row;
         justify-content: center;
         align-items: center;
+        flex-wrap: wrap;
     }
 
     .navbar-nav.socialMedia .nav-item .nav-link {

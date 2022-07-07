@@ -21,20 +21,23 @@
     margin-bottom: 0.3em;
 }
 .footer_logos_brand img{
-    width: 200px;
-    margin-left: -5px;
+    width: 150px;
+    max-width: 100%;
+    
 }
 .footer_logos_socialmedia{
     display: flex;
     justify-content: space-around;
     align-items: center;
     width: 170px;
+    max-width: 100%;
     background: linear-gradient(-30deg, #05a4e9, #eb1e07, #0ba4ca, #eb3c07);
     border-radius: 3px;
     padding: 0.5em;
     animation: gradient 8s ease-in infinite;
     background-size: 400% 400%;
     margin-top: 1em;
+    flex-wrap: wrap;
 }
 @keyframes gradient {
     0% {
@@ -154,11 +157,15 @@
         font-family: "Source Sans Pro",Arial,Helvetica,sans-serif;
         font-size: .77em;
         font-weight: 600;
-        
+        overflow-wrap: break-word;
     }
     
     .footer_about_location,.footer_about_phonenumber,.footer_about_time,.footer_about_title{
         width: 100%;
+    }
+    .footer_logos{
+        flex-basis: 100%;
+        max-width: 100%;
     }
 }
 
