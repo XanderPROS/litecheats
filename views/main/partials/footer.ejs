@@ -4,18 +4,14 @@
     <form class="hSearch" action="/dashboard" method="GET">
       <div class="row vx">
         <div class=" col-12 input-group input-group mb-3 mt-3 d-flex justify-content-center">
-          <input type="text" autocomplete="off" class="form-control" onkeyup="showResults(this.value)" name="search" placeholder="Search products..." aria-describedby="button-addon2">
+          <input type="text" autocomplete="off" class="form-control" onkeyup="showResults(this.value)" name="search" placeholder="Search posts..." aria-describedby="button-addon2">
           <div class="input-group-append">
-            <button id="searchButton" type="submit" class="btn btn-warning" type="button" id="button-addon2"><i class="fas fa-search"></i></button>
+            <button id="searchButton" type="submit" class="btn btn-danger" type="button" id="button-addon2"><i class="fas fa-search"></i></button>
           </div>
           <div style="position: relative;width:100%;top:-1px;">
               <div class="border" id="search-results">
               </div>
             </div>
-          <% if(noMatch=false && noMatch.length>0){ %>
-          <small class="mt-1"><%=noMatch%></small>
-          <a class="btn btn-warning btn-sm" role="button" href="/dashboard">Go back</a>
-          <% } %>
         </div>
       </div>
     </form>

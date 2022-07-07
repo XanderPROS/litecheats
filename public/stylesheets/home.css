@@ -680,3 +680,52 @@ cite a{
     display: none;
 }}
 
+.llss{
+    font-weight: 700;
+    font-size: medium;
+    
+}
+.llrr{
+    font-size: medium;
+}
+
+@media(max-width:576px){
+    .llss{
+        font-weight: 700;
+        font-size: smaller;
+    }
+    .llrr{
+        font-size: smaller;
+    }
+}
+.gglink{
+    text-decoration: none;
+    color: black;
+}
+.gglink:hover{
+    text-decoration: none;
+    color: black;
+    
+}
+.nnb{
+    margin: 0;
+    padding-left: 0.7rem;
+}
+.nnb:hover{
+    background-color: rgba(63, 59, 59, 0.199);
+}
+#search-results{
+    background-color: #f7f7f7;
+}
+.fvv{
+    height: 50px;
+    width: 100%;
+    position: fixed;
+    background-color: #f7f7f7;
+    z-index: 0;
+    top:56px;
+    left:0;
+    box-shadow:0 0px 1px 0 rgba(0, 0, 0, 0.808),0 0px 1px 0 rgba(0, 0, 0, 0.247);
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+}
