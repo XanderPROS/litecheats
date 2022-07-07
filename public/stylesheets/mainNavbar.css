@@ -116,7 +116,7 @@ body,
 .nav-item.dropdown.show{
     flex-direction: column;
 }
-@media all and (min-width: 992px) {
+@media all and (min-width: 800px) {
 	.navbar .dropdown-menu-end{ right:0; left: auto;  }
 	.navbar .nav-item .dropdown-menu{  display:block; opacity: 0;  visibility: hidden; transition:.3s; margin-top:0;  }
 	.navbar .nav-item:hover .nav-link{ color: #fff;  }
