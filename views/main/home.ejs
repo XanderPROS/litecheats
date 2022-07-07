@@ -29,6 +29,16 @@
                             <div class="homeContainerLeft_blogPosts_post_text_description">
                                 <%- post.body.replace(/<[^>]+>/g, '').replace(/&nbsp;/g, '').substring(0,145)%>...
                             </div>
+                            <hr class="hrbelowIm">
+                            <blockquote class="blockquote">
+                                <footer class="blockquote-footer">by <cite title="Source Title">
+                                        <%=post.author.name%>
+                                    </cite> on <cite title="Source Title">
+                                        <%=dateString(post._createdAt)%>
+                                    </cite> in <cite title="Source Title"><a href="/search/<%= post.categories.title%>">
+                                            <%=post.categories.title%>
+                                        </a></cite></footer>
+                            </blockquote>
                         </div>
                     </div>
                     <% }) %>
