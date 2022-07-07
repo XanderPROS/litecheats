@@ -23,12 +23,36 @@
 }
 .homeContainerRight_discordWidget{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    
 }
 .homeContainerRight_discordWidget iframe{
     max-width: 100%;
+    height: 500px;
+}
+.homeContainerRight_discordWidget_warning{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 0.5em;
+    background-color: #1b1d25;
+    border: 2px solid #1b1d25;
+    border-radius: 5px;
+    width: 100%;
+}
+.homeContainerRight_discordWidget_warning_help{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #9f0000;
+    padding: 1em;
+    color: white;
+    font-weight: 600;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 .homeContainerLeft_blogPosts {
     display: flex;
@@ -150,13 +174,19 @@ cite a{
     .homeContainerLeft,.homeContainerRight {
         flex-basis: 100%;
         max-width: 100%;
+        margin-bottom: 1em;
+        width: 100%;
     }
     .homeContainerLeft_blogPosts_post_image{
         flex-basis: 50%;
         max-width: 50%;
         
     }
-  
+
+    .homeContainerRight_discordWidget iframe{
+        
+        height: 50vh;
+    }
     .homeContainerLeft_blogPosts_post_text{
      
         flex-basis: 50%;
@@ -179,6 +209,14 @@ cite a{
     }
     .homeContainerLeft_blogPosts_post_text{
         margin-top: 1em;
+    }
+}
+@media(max-width:450px){
+    .homeContainerRight_discordWidget{
+        width: 100%;
+    }
+    .homeContainerRight_discordWidget iframe{
+        width: 100%;
     }
 }
 @media(max-width:300px){
