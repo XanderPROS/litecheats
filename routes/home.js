@@ -101,5 +101,20 @@ router.post('/send-message',async(req,res)=>{
         return res.redirect('back')
     }
 })
+router.get('/searchPost',async(req,res)=>{
+    var q = req.query.q;
+    console.log(q)
+    const regex= new RegExp(escapeRegex(q),"gi");
+    console.log(regex)
+    const query = `*[_type=="post" && title match "${q}*"]{title,slug,categories[0]->}`;
+    console.log(query)
+    let posts = await client.fetch(query);
+    console.log(posts)
+    res.json(posts)
+})
 
 module.exports = router;
+
+function escapeRegex(text) {
+    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+};

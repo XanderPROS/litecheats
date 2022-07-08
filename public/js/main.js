@@ -262,6 +262,7 @@ var showResults = debounce(function(arg){
         $("#search-results").html("");
     })
     .done(function(data){
+        
         if(data.length===0){
             $("#search-results").append('<p class="lead text-center llss mt-1 mb-1" style="font-weight:300;">No results</p>');
         }else{
