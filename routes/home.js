@@ -89,7 +89,7 @@ router.post('/send-message', async (req, res) => {
         </div>
         `
     const foot='</body></html>';
-        await mailer.sendEmail('contact.xandergaming@gmail.com','contact.xandergaming@gmail.com',`Enquiry:${req.body.subject}`,head+html+foot);
+        await mailer.sendEmail('support@litecheats.org','contact.xandergaming@gmail.com',`Enquiry:${req.body.subject}`,head+html+foot);
         req.flash("success", "Message sent successfully");
         return res.redirect('/contact-us')
     } catch (error) {
