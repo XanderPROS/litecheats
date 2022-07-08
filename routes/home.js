@@ -76,20 +76,37 @@ router.get("/about-us", async (req, res) => {
 router.post('/send-message', async (req, res) => {
     
     try {
-        const head='<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"></head><body>';
-    const html=`
-        <div style="background-color:white;border: red solid 1px;border-radius:3px;width:400px;margin-left:auto;margin-right:auto;padding:2rem;">
-            <h2>You've got a new mail from ${req.body.fullname}, their email is: ✉️${req.body.email} and their Phone Number is: <a href="tel:${req.body.phonenumber}">${req.body.phonenumber}</a><h2>
-            <br>
+      
+    const html=`<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    <html lang="en">
+    <head>
+      <meta charset="utf-8">
+    
+      <title>The HTML5 Herald</title>
+      <meta name="description" content="The HTML5 Herald">
+      <meta name="author" content="SitePoint">
+    <meta http-equiv="Content-Type" content="text/html charset=UTF-8" />
+    
+      <link rel="stylesheet" href="css/styles.css?v=1.0">
+    
+    </head>
+    
+    <body>
+      <div class="img-container" style="display: flex;justify-content: center;align-items: center;border-radius: 5px;overflow: hidden; font-family: 'helvetica', 'ui-sans';">              
+            </div>
+            <div class="container" style="margin-left: 20px;margin-right: 20px;">
+            <h3>You've got a new mail from ${req.body.fullname}, their email is: ✉️${req.body.email} and their Phone Number is: <a href="tel:${req.body.phonenumber}">${req.body.phonenumber}</a></h3>
+            <div style="font-size: 16px;">
+            <p>Message:</p>
             <p>${req.body.message}</p>
             <br>
-            Thanks,
-            <br>
-            Litecheats
-        </div>
-        `
-    const foot='</body></html>';
-        await mailer.sendEmail('support@litecheats.org','contact.xandergaming@gmail.com',`Enquiry:${req.body.subject}`,head+html+foot);
+            </div>
+            </div>
+            </div>
+    </body>
+    </html>`
+    
+        await mailer.sendEmail('support@litecheats.org','contact.xandergaming@gmail.com',`Enquiry Litecheats`,html);
         req.flash("success", "Message sent successfully");
         return res.redirect('/contact-us')
     } catch (error) {
