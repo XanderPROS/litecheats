@@ -682,7 +682,7 @@ cite a{
 
 .llss{
     font-weight: 700;
-    font-size: medium;
+    font-size: 14px;
     
 }
 .llrr{
@@ -692,7 +692,7 @@ cite a{
 @media(max-width:576px){
     .llss{
         font-weight: 700;
-        font-size: smaller;
+        font-size: 12px;
     }
     .llrr{
         font-size: smaller;
