@@ -1,6 +1,14 @@
 <%-include("./partials/headerFirst")%>
-<title>Home - Litecheats</title>
+    <title>Home - Litecheats</title>
     <meta name="description" content="<%=posts[0]?.bodyInText.substring(0,150)%>" >
+    <meta property="og:title" content="Home - Litecheats" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.litecheats.org/home" />
+    <meta property="og:image" content="<%=posts[0]?.mainImage%>" />
+    <meta name="twitter:title" content="Home - Litecheats">
+    <meta name="twitter:description" content="<%=posts[0]?.bodyInText.substring(0,150)%>">
+    <meta name="twitter:image" content="<%=posts[0]?.mainImage%>">
+    <meta name="twitter:card" content="summary_large_image">
 <%-include("./partials/headerSecond")%>
     <div class="container homeContainer">
         <div class="homeContainerLeft">
