@@ -6,6 +6,7 @@ const { dateString } = require('../utils/dateString');
 const sendgrid = require('@sendgrid/mail');
 const { SitemapStream, streamToPromise } = require('sitemap');
 const { createGzip } = require('zlib');
+const { convert } = require('html-to-text');
 const sitemap = require('sitemap');
 sendgrid.setApiKey(process.env.SENDGRID_API_KEY);
 var CronJob = require('cron').CronJob;
@@ -14,13 +15,14 @@ new CronJob('0 0 */1 * * *',async()=>{
     await generateSitemap()
 },null,true);
 router.get("/home", async (req, res) => {
-    const query = '*[_type=="post"]{_createdAt,author->,body,categories[0]->,mainImage,slug,title}';
+    const query = '*[_type=="post"] | order(_createdAt desc) {_createdAt,author->,body,categories[0]->,mainImage,slug,title}';
     let posts = await client.fetch(query);
-
+    let regex = /(?:&nbsp|;|\s+)/gm;
     posts = posts.map((post) => ({
         ...post,
         mainImage: String(urlFor(post.mainImage)),
         author: { ...post.author, image: String(urlFor(post.author.image)) },
+        bodyInText:post.body.replace(/<[^>]+>/g, '').replace(/&nbsp;/g, '').replace(regex, " ").substring(0,145)
     }))
 
     res.render("main/home", { posts: posts, dateString: dateString });
@@ -32,24 +34,26 @@ router.get("/posts/:postCategorySlug/:postSlug", async (req, res) => {
 
     const query = `*[_type=="post" && slug.current=="${postSlug}"]{_createdAt,author->,body,categories[0]->,mainImage,slug,title}`;
     let posts = await client.fetch(query);
-
+    let regex = /(?:&nbsp|;|\s+)/gm;
     posts = posts.map((post) => ({
         ...post,
         mainImage: String(urlFor(post.mainImage)),
         author: { ...post.author, image: String(urlFor(post.author.image)) },
+        bodyInText:post.body.replace(/<[^>]+>/g, '').replace(/&nbsp;/g, '').replace(regex, " ").substring(0,145)
     }))
     res.render('main/post', { post: posts[0], dateString: dateString });
 })
 
 router.get("/search/:postCategory", async (req, res) => {
     const postCategory = req.params.postCategory;
-    const query = `*[_type=="post" && (categories[0]->title=="${postCategory}" || categories[0]->slug.current=="${postCategory}")]{_createdAt,author->,body,categories[0]->,mainImage,slug,title}`;
+    const query = `*[_type=="post" && (categories[0]->title=="${postCategory}" || categories[0]->slug.current=="${postCategory}")] | order(_createdAt desc) {_createdAt,author->,body,categories[0]->,mainImage,slug,title}`;
     let posts = await client.fetch(query);
-
+    let regex = /(?:&nbsp|;|\s+)/gm;
     posts = posts.map((post) => ({
         ...post,
         mainImage: String(urlFor(post.mainImage)),
         author: { ...post.author, image: String(urlFor(post.author.image)) },
+        bodyInText:post.body.replace(/<[^>]+>/g, '').replace(/&nbsp;/g, '').replace(regex, " ").substring(0,145)
     }))
 
     res.render("main/home", { posts: posts, dateString: dateString });

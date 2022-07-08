@@ -1,4 +1,7 @@
-<%-include("./partials/header")%>
+<%-include("./partials/headerFirst")%>
+<title><%= post.title%> | <%=post.bodyInText.substring(0,100)%></title>
+    <meta name="description" content="<%=post.bodyInText.substring(0,80)%>" >
+<%-include("./partials/headerSecond")%>
     <div class="container homeContainer">
         <div class="homeContainerLeft">
             <div class="homeContainerLeft_blogPosts post_poast">
@@ -33,7 +36,7 @@
             <div class="post_footer">
                 <div class="post_footer_discord">
                     <h4>JOIN DISCORD FOR HELP</h4>
-                    <a href="/discord"><img src='/images/JoinUsOnDiscord.png'/></a>
+                    <a href="/discord"><img src='/images/JoinUsOnDiscord.png' alt="litecheats discord"/></a>
                 </div>
                 <div class="share-box">
                     <h8 class="share-title">Share This:</h8>

@@ -1,11 +1,14 @@
-<%-include("./partials/header")%>
+<%-include("./partials/headerFirst")%>
+<title>Home - Litecheats</title>
+    <meta name="description" content="<%=posts[0].bodyInText.substring(0,150)%>" >
+<%-include("./partials/headerSecond")%>
     <div class="container homeContainer">
         <div class="homeContainerLeft">
             <div class="homeContainerLeft_blogPosts">
                 <% posts.forEach((post)=>{ %>
                     <div class="homeContainerLeft_blogPosts_post">
                         <div class="homeContainerLeft_blogPosts_post_image">
-                            <img src='<%= post.mainImage %>' />
+                            <img src='<%= post.mainImage %>' alt="<%=post.title%>"/>
                         </div>
                         <div class="homeContainerLeft_blogPosts_post_text">
                             <div class="homeContainerLeft_blogPosts_post_text_tagdate">
@@ -27,7 +30,7 @@
                                     </a>
                             </h2>
                             <div class="homeContainerLeft_blogPosts_post_text_description">
-                                <%- post.body.replace(/<[^>]+>/g, '').replace(/&nbsp;/g, '').substring(0,145)%>...
+                                <%- post.bodyInText%>...
                             </div>
                             <hr class="hrbelowIm">
                             <blockquote class="blockquote">
