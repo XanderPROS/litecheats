@@ -729,3 +729,7 @@ cite a{
     transform: translateZ(0);
     -webkit-transform: translateZ(0);
 }
+.removeTextDecoration{
+    text-decoration: none;
+    color: black;
+}

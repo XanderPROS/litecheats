@@ -48,7 +48,7 @@ router.get("/posts/:postCategorySlug/:postSlug", async (req, res) => {
 
 router.get("/search/:postCategory", async (req, res) => {
     const postCategory = req.params.postCategory;
-    const query = `*[_type=="post" && (categories[0]->title=="${postCategory}" || categories[0]->slug.current=="${postCategory}")] | order(_createdAt desc) {_createdAt,author->,body,categories[0]->,mainImage,slug,title}`;
+    const query = `*[_type=="post" && (categories->title=="${postCategory}" || categories->slug.current=="${postCategory}")] | order(_createdAt desc) {_createdAt,author->,body,categories[0]->,mainImage,slug,title}`;
     let posts = await client.fetch(query);
     let regex = /(?:&nbsp|;|\s+)/gm;
     posts = posts.map((post) => ({

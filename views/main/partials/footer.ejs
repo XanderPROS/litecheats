@@ -1,4 +1,45 @@
 <div class="homeContainerRight">
+  <div class=" loginContainer">
+    
+        
+        
+        <form autocomplete="off" action="/login" method="POST">
+            <a href="/login"><img src="/images/litecheats.png" alt=""></a>
+            <%if(error && error.length > 0){%>
+                <div class="alert alert-danger" id="errorBox" role="alert">
+                    <h6>There was a problem</h6>
+                    <i id="errIco" class="fas fa-exclamation-triangle"></i> 
+                    <p id="err"><%= error %></p>
+                </div>
+            <%}%>
+            <%if(success && success.length > 0){%>
+                <div class="alert alert-success" id="successBox" role="alert">
+                    <h6 class="headAlert">Done</h6>
+                    <i id="sucIco" class="fas fa-check-circle"></i>
+                    <p id="suc"><%= success %></p>
+                </div>
+            <%}%>
+            <% if((!error || error.length<=0) && (!success || success.length<=0)){%>
+                <hr id="hrbelowIm">
+            <% } %>
+            <h4 id="heading">Sign-In</h4>
+            <div class="form-group" autocomplete="off">
+                <label for="email">Email</label>
+                <input type="email" class="form-control form-control-sm" id="email" name="email" autofocus required/>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                
+                <input type="password" class="form-control form-control-sm" name="password" id="password" required>
+            </div>
+            <button type="submit" class="btn btn-warning"><span id="buttonText">Sign-In<span></button>
+            <div>
+            <hr id="hrbelowFo">
+            <p id="signin">New to Litecheats? <a href="/register">Sign-Up <span id="signIco"><i class="fas fa-caret-right"></i></span></a></p>
+            </div>
+        </form>
+
+</div>
   <div class="homeContainerRight_searchWidget">
     
     <form class="hSearch" action="/dashboard" method="GET">
