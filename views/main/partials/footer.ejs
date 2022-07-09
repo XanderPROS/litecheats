@@ -5,20 +5,6 @@
         
         <form autocomplete="off" action="/login" method="POST">
             <a href="/login"><img src="/images/litecheats.png" alt=""></a>
-            <%if(error && error.length > 0){%>
-                <div class="alert alert-danger" id="errorBox" role="alert">
-                    <h6>There was a problem</h6>
-                    <i id="errIco" class="fas fa-exclamation-triangle"></i> 
-                    <p id="err"><%= error %></p>
-                </div>
-            <%}%>
-            <%if(success && success.length > 0){%>
-                <div class="alert alert-success" id="successBox" role="alert">
-                    <h6 class="headAlert">Done</h6>
-                    <i id="sucIco" class="fas fa-check-circle"></i>
-                    <p id="suc"><%= success %></p>
-                </div>
-            <%}%>
             <% if((!error || error.length<=0) && (!success || success.length<=0)){%>
                 <hr id="hrbelowIm">
             <% } %>
