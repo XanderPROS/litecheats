@@ -24,7 +24,7 @@ router.get("/home", async (req, res) => {
         ...post,
         mainImage: String(urlFor(post.mainImage)),
         author: { ...post.author, image: String(urlFor(post.author.image)) },
-        bodyInText:post.body.replace(/<[^>]+>/g, '').replace(/&nbsp;/g, '').replace(regex, " ").substring(0,145)
+        bodyInText:post.body.replace(/<[^>]+>/g, '').replace(/&nbsp;/g, '').replace(/(?:&nbsp|;|\s+)/gm, " ").substring(0,145)
     }))
 
     res.render("main/home", { posts: posts, dateString: dateString });

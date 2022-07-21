@@ -4,7 +4,7 @@ var router=app.Router();
 var middleware = require("../middleware");
 
 router.get("/",function(req,res){
-    res.redirect("/home");
+    res.redirect("/login");
 })
 router.get("*",function(req,res){
     res.redirect("/")
