@@ -705,9 +705,6 @@ router.get("/settings",middleware.isLoggedIn,function(req,res){
 router.get("/discord",function(req,res){
     res.redirect(process.env.DISCORDLINK)
 })
-router.get("/youtube",function(req,res){
-    res.redirect(process.env.YOUTUBELINK)
-})
 function escapeRegex(text) {
     return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
 };

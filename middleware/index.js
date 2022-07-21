@@ -15,7 +15,7 @@ middlewareObj.isLoggedIn=function(req,res,next){
         return next();
     }
     req.flash("error","You need to be logged in");
-    res.redirect("/login");
+    res.redirect("/");
 }
 
 middlewareObj.isLoggedInAdmin=function(req,res,next){
@@ -23,7 +23,7 @@ middlewareObj.isLoggedInAdmin=function(req,res,next){
         return next();
     }
     req.flash("error","You need to be logged in");
-    res.redirect("/login");
+    res.redirect("/");
 }
 
 module.exports=middlewareObj;

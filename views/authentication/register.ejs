@@ -2,7 +2,7 @@
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Litecheats Registration</title>
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -37,7 +37,7 @@
             
             
             <form action="/register" id="regForm" method="POST" autocomplete="off" class="needs-validation" novalidate>
-                <a href="/login"><img src="/images/litecheats.png" alt=""></a>
+                <a href="/"><img src="/images/litecheats.png" alt=""></a>
                 <%if(error && error.length > 0){%>
                     <div class="alert alert-danger" id="errorBox" role="alert">
                         <h6>There was a problem</h6>
@@ -95,7 +95,7 @@
                 <button type="submit" class="btn btn-warning"><span id="buttonText">Create your Litecheats account<span></button>
                 <div>
                 <hr id="hrbelowFo">
-                <p id="signin">Already have an account? <a href="/login">Sign-In <span id="signIco"><i class="fas fa-caret-right"></i></span></a></p>
+                <p id="signin">Already have an account? <a href="/">Sign-In <span id="signIco"><i class="fas fa-caret-right"></i></span></a></p>
                 </div>
             </form>
         </div>

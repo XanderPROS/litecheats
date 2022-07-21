@@ -3,11 +3,11 @@ var User = require("../models/user");
 var router=app.Router();
 var middleware = require("../middleware");
 
-router.get("/",function(req,res){
-    res.redirect("/login");
+router.get("/",middleware.isLoggedOut,function(req,res){
+    res.render("authentication/login");
 })
 router.get("*",function(req,res){
-    res.redirect("/")
+    res.redirect("/login")
 })
 
 module.exports = router;
