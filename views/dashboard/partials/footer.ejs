@@ -28,62 +28,6 @@
         $('#tawk_629b0f62b0d10b6f3e75a543').hide();
         $('#closeSupport').hide();
     })
-
-
-
-
-
-
-    document.getElementById('rzp-button1').onclick = async (e) => {
-        e.preventDefault();
-        const res = await fetch('/razorpay_orderId', {
-            body: JSON.stringify({
-                rechargeAmount: document.getElementById("rechargeAmount").value
-            }),
-            headers: {
-                "Content-Type": "application/json",
-            },
-            method: "POST",
-        })
-        const { order } = await res.json();
-        const rzrPay = await initializeRazorpay();
-        if (!rzrPay) {
-            alert("Razorpay SDK Failed to load");
-            return;
-        }
-        var options = {
-            key: 'rzp_live_m8Hxh1JhLrxXPh', // Enter the Key ID generated from the Dashboard
-            name: "Litecheats Official",
-            currency: order.currency,
-            amount: order.amount,
-            order_id: order.id,
-            description: "LC Recharge Section",
-            image: "https://litecheats.org/images/litecheats.png",
-            handler: async (response) => {
-                location.reload();
-            },
-        };
-
-        const paymentObject = new window.Razorpay(options);
-        paymentObject.open();
-    }
-    const initializeRazorpay = () => {
-        return new Promise((resolve) => {
-            const script = document.createElement("script");
-            script.src = "https://checkout.razorpay.com/v1/checkout.js";
-            // document.body.appendChild(script);
-
-            script.onload = () => {
-                resolve(true);
-            };
-            script.onerror = () => {
-                resolve(false);
-            };
-
-            document.body.appendChild(script);
-        });
-    };
-
 </script>
 <!--End of Tawk.to Script-->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
