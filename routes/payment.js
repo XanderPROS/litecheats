@@ -1,18 +1,20 @@
 const express = require("express"),
-      User=require("../models/user"),
-      PaypalBlack=require("../models/paypalBlacklist"),
-      PayPalOrder=require("../models/orderlist"),
-    OrderNumber=require("../models/ordernumber"),
-      router=express.Router(),
-      paypal=require("paypal-rest-sdk"),
-      middleware=require("../middleware"),
-      coinbase = require('coinbase-commerce-node'),
-      mailer=require("../misc/mailer"),
-      Charge = coinbase.resources.Charge,
-      Client = coinbase.Client,
-      clientObj = Client.init(process.env.COINBASE_API),
-      Webhook = require('coinbase-commerce-node').Webhook;
+    Razorpay = require('razorpay'),
+    User = require("../models/user"),
+    PaypalBlack = require("../models/paypalBlacklist"),
+    PayPalOrder = require("../models/orderlist"),
+    OrderNumber = require("../models/ordernumber"),
+    router = express.Router(),
+    paypal = require("paypal-rest-sdk"),
+    middleware = require("../middleware"),
+    coinbase = require('coinbase-commerce-node'),
+    mailer = require("../misc/mailer"),
+    Charge = coinbase.resources.Charge,
+    Client = coinbase.Client,
+    clientObj = Client.init(process.env.COINBASE_API),
+    Webhook = require('coinbase-commerce-node').Webhook;
 var webhookSecret = process.env.YOUR_WEBHOOK;
+const { validateWebhookSignature } = require('razorpay/dist/utils/razorpay-utils');
 const https = require('https');
 var uniqid = require('uniqid');
 const checksum_lib = require('../misc/checksum');
@@ -236,7 +238,48 @@ router.post("/recharge_paytm", middleware.isLoggedIn, function (req, res) {
     }
 
 })
+router.post("/razorpay_orderId", middleware.isLoggedIn, async (req, res) => {
+    if (req.user.country === "INR") {
+        if (!req.body.rechargeAmount) {
+            return res.redirect("back");
+        }
+        var options = {
+            amount: Math.round(req.body.rechargeAmount) * 100,
+            currency: 'INR',
+        }
+        var order = await instance.orders.create(options);
+        var orderId = order.id;
+        const user = await User.findById(req.user._id);
+        user.razor_orderId = orderId;
+        await user.save();
+        res.status(200).json({ order });
+    } else {
+        return res.redirect("back");
+    }
 
+})
+router.post("/razorpay_recharge", async (req, res) => {
+    if (validateWebhookSignature(JSON.stringify(req.body), req.headers['x-razorpay-signature'], process.env.RAZOR_WEBHOOK_SECRET)) {
+        try {
+            const event = req.body.event;
+            if (event === 'payment.captured') {
+               
+                const orderId = req.body.payload.payment.entity.order_id;
+                const amount = req.body.payload.payment.entity.amount/100;
+                const user = await User.findOne({razor_orderId:orderId});
+                user.lcbalance = +user.lcbalance + +amount;
+                user.razor_orderId='';
+                await user.save();
+                res.status(200).json();
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(500).json();
+        }
+    }
+
+
+})
 router.post("/success_paytm/:id", function (req, res) {
     var paytmChecksum = "";
     /**
